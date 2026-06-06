@@ -32,7 +32,7 @@ export function Navbar() {
         
         {/* LOGO */}
         <div className="flex items-center gap-3 group cursor-pointer">
-          <img src={logo} alt="Logo" className="w-16 h-16 object-contain group-hover:rotate-12 transition-transform duration-300" />
+          <img src={logo} alt="Logo" className="w-20 h-20 object-contain group-hover:rotate-12 transition-transform duration-300" />
           <div className="text-3xl font-black italic text-yellow-400">
             KWAN-DO
           </div>

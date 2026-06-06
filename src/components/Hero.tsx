@@ -1,43 +1,181 @@
 import { motion } from "framer-motion";
-import { GiHighKick } from "react-icons/gi";
+import { FaArrowRight, FaMedal, FaFistRaised } from "react-icons/fa";
 
-export function Hero() {
+export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" id="hero">
-      <div className="absolute inset-0 bg-neutral-950"></div>
-      {/* Brute Visual Elements */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-logo-blue/10 rounded-full blur-[120px]"></div>
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-logo-red/10 rounded-full blur-[120px]"></div>
-      
-      <motion.div 
-        initial={{ y: 30, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 text-center px-6 max-w-5xl"
-      >
-        <div className="mb-12 inline-block skew-kinetic">
-          <div className="w-32 h-32 kinetic-border bg-black flex items-center justify-center">
-            <GiHighKick className="text-6xl text-primary font-bold skew-kinetic-reverse" />
-          </div>
+    <section className="relative min-h-screen mt-25 overflow-hidden bg-black">
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/kwanDo-dojang.png')",
+        }}
+      />
+
+      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+
+      {/* Hero Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-8 lg:px-20 min-h-[80vh] flex items-center">
+        <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <span
+              className="
+                inline-block
+                px-4 py-2
+                bg-yellow-400/20
+                border border-yellow-400
+                rounded-full
+                text-yellow-300
+                text-sm
+                font-medium
+                mb-6
+              "
+            >
+              Escuela Oficial de Taekwondo
+            </span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="
+              text-5xl
+              md:text-7xl
+              font-black
+              uppercase
+              leading-none
+            "
+          >
+            Escuela de
+            <br />
+            <span className="text-white">Taekwondo</span>
+            <br />
+            <span className="text-yellow-400">Kwan-Do</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="
+              mt-8
+              text-lg
+              text-zinc-300
+              max-w-xl
+              leading-relaxed
+            "
+          >
+            Formamos personas mediante la disciplina, el respeto y la
+            superación constante. Clases para niños, adolescentes y adultos.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="flex flex-wrap gap-4 mt-10"
+          >
+            <button
+              className="
+                flex items-center gap-3
+                bg-yellow-400
+                text-black
+                font-bold
+                px-8 py-4
+                rounded-xl
+                hover:scale-105
+                transition
+              "
+            >
+              Comenzar Ahora
+              <FaArrowRight />
+            </button>
+
+            <button
+              className="
+                border border-zinc-500
+                px-8 py-4
+                rounded-xl
+                text-white
+                hover:border-yellow-400
+                transition
+              "
+            >
+              Ver Horarios
+            </button>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="
+              mt-16
+              grid
+              grid-cols-1
+              md:grid-cols-3
+              gap-6
+            "
+          >
+            <Stat
+              icon={<FaFistRaised />}
+              title="Disciplina"
+              text="Autocontrol y constancia."
+            />
+
+            <Stat
+              icon={<FaMedal />}
+              title="Respeto"
+              text="Valores y compañerismo."
+            />
+
+            <Stat
+              icon={<FaArrowRight />}
+              title="Superación"
+              text="Cada cinturón es un logro."
+            />
+          </motion.div>
         </div>
-        <h1 className="text-6xl md:text-9xl font-black tracking-tighter mb-8 leading-[0.85] uppercase italic">
-          Taekwondo <br />
-          <span className="bg-primary text-black px-4 inline-block skew-kinetic">KWAN-DO</span>
-        </h1>
-        <p className="text-xl md:text-3xl text-on-surface/90 font-bold mb-12 uppercase tracking-tight italic">
-          Disciplina <span className="text-logo-red">/</span> Respeto <span className="text-logo-blue">/</span> Superación
-        </p>
-        <a href="#contact" className="inline-block bg-white text-black px-16 py-6 text-xl font-black tracking-tighter uppercase kinetic-border hover:bg-primary transition-all active:scale-95">
-          Comenzar ahora
-        </a>
-      </motion.div>
-      
-      {/* Kinetic Background Text */}
-      <div className="absolute bottom-10 left-0 w-full overflow-hidden whitespace-nowrap opacity-5 pointer-events-none select-none">
-        <span className="text-[20vh] font-black uppercase italic tracking-tighter leading-none">
-          THE KINETIC DISCIPLINE THE KINETIC DISCIPLINE THE KINETIC DISCIPLINE
-        </span>
       </div>
     </section>
+  );
+}
+
+type StatProps = {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+};
+
+function Stat({ icon, title, text }: StatProps) {
+  return (
+    <div
+      className="
+        bg-white/5
+        backdrop-blur-md
+        border border-white/10
+        rounded-2xl
+        p-6
+      "
+    >
+      <div className="text-yellow-400 text-3xl mb-4">
+        {icon}
+      </div>
+
+      <h3 className="font-bold text-xl mb-2">
+        {title}
+      </h3>
+
+      <p className="text-zinc-400">
+        {text}
+      </p>
+    </div>
   );
 }
