@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'preact/hooks';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Loader } from './components/Loader';
-import { Hero } from './components/Hero';
-import { Navbar, About, Benefits, Classes, Schedule, Contact, Footer } from './components/Sections';
+import  Hero  from './components/Hero';
+import {  Benefits, Classes, Schedule} from './components/Sections';
+import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
+import { Navbar } from './components/NavBar';
+import { About } from './components/About';
+import Features from './components/Features';
+
 import './app.css';
 
 export function App() {
@@ -31,6 +37,7 @@ export function App() {
           <main>
             <Hero />
             <About />
+            <Features />
             <Benefits />
             <Classes />
             <Schedule />
@@ -38,7 +45,7 @@ export function App() {
           </main>
           <Footer />
 
-          {/* Floating WhatsApp Button */}
+  
           <a
             href="#"
             className="fixed bottom-8 right-8 z-[90] bg-[#25D366] text-white p-4 rounded-full shadow-[4px_4px_0px_#FFF] hover:scale-110 active:scale-95 transition-all"
