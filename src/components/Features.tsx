@@ -128,7 +128,7 @@ export default function Features() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6"
           >
             {benefits.map((benefit, index) => (
               <motion.div
@@ -140,7 +140,7 @@ export default function Features() {
                   bg-zinc-900/20
                   border border-zinc-900
                   p-6
-                  min-h-[160px]
+                  min-h-[130px] sm:min-h-[160px]
                   hover:border-yellow-400/40
                   hover:bg-zinc-900/40
                   transition-all

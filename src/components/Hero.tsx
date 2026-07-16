@@ -6,14 +6,18 @@ import improveImg from '../assets/improvement.png';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen mt-24 overflow-hidden bg-black">
+    <section className="relative min-h-[108vh] md:min-h-[116vh] mt-16 md:mt-24 overflow-hidden bg-neutral-950">
       {/* Background */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/kwanDo-dojang.png')" }}
-      />
+     <div
+  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: "url('/background.jpeg')",
+    backgroundPosition: "center top", 
+  }}
+/>
       <div className="absolute inset-0 bg-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/42 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[34rem] bg-gradient-to-b from-transparent via-neutral-950/55 to-neutral-950" />
 
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-yellow-400 z-20" />
@@ -27,7 +31,7 @@ export default function Hero() {
       />
 
       {/* Belt stripes decoration */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 flex flex-col gap-[5px] opacity-20 z-10 pointer-events-none">
+      <div className="hidden md:flex right-8 top-1/2 -translate-y-1/2 flex-col gap-[5px] opacity-20 z-10 pointer-events-none absolute">
         {[
           { color: "#ffffff", h: "32px" },
           { color: "#facc15", h: "20px" },
@@ -50,7 +54,7 @@ export default function Hero() {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mt-10 mx-auto px-6 sm:px-8 lg:px-20 min-h-[80vh] flex items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 mt-10 sm:px-8 lg:px-10 xl:px-12 min-h-[74vh] sm:min-h-[88vh] md:min-h-[96vh] flex items-start">
         <div className="max-w-3xl w-full">
 
           {/* Badge */}
@@ -71,7 +75,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="font-black uppercase leading-[0.92] tracking-wide"
-            style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(52px, 8vw, 80px)" }}
+            style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(40px, 8vw, 80px)" }}
           >
             Escuela de
             <br />
@@ -116,11 +120,11 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-y-10 sm:gap-y-0"
           >
             <Stat icon={disciplineImg} title="Disciplina" text="Autocontrol y constancia en cada entrenamiento." />
-            <Stat icon={respectImg} title="Respeto" text="Valores y compañerismo como base del arte marcial." />
-            <Stat icon={improveImg} title="Superación" text="Cada cinturón es un logro ganado con esfuerzo." />
+            <Stat icon={respectImg} title="Respeto" text="Valores y compañerismo como base del arte marcial." hasDivider />
+            <Stat icon={improveImg} title="Superación" text="Cada cinturón es un logro ganado con esfuerzo." hasDivider />
           </motion.div>
 
         </div>
@@ -133,37 +137,28 @@ type StatProps = {
   icon: string;
   title: string;
   text: string;
+  hasDivider?: boolean;
 };
 
-function Stat({ icon, title, text }: StatProps) {
+function Stat({ icon, title, text, hasDivider = false }: StatProps) {
   return (
     <div
-      className="
-        group relative overflow-hidden
-        bg-white/[0.15]
-        border border-white/[0.08]
-        rounded-2xl
-        p-6
-        text-center
-        hover:border-yellow-400/35
-        transition-all duration-300
-        before:absolute before:top-0 before:inset-x-0 before:h-[2px]
-        before:bg-yellow-400 before:opacity-0
-        before:transition-opacity before:duration-300
-        hover:before:opacity-100
-      "
+      className={`relative flex flex-col items-center px-5 text-center sm:px-7 ${
+        hasDivider ? "sm:border-l sm:border-white/15" : ""
+      }`}
     >
-      <div className="flex justify-center mb-5">
-        <div>
-          <img className="w-20 h-20 sm:w-24 sm:h-24 object-contain mx-auto" src={icon} alt={title} />
-        </div>
+      <div className="relative mb-4 flex h-16 w-16 items-center justify-center">
+        <span className="absolute inset-0 rounded-full border border-yellow-500/35 shadow-[0_0_18px_rgba(245,197,24,0.18)]" />
+        <span className="absolute inset-1 rounded-full border-t-4 border-r-2 border-b-2 border-l-4 border-yellow-500/75 rotate-[-24deg]" />
+        <span className="absolute -inset-1 rounded-full border-t-2 border-yellow-700/60 rotate-[28deg]" />
+        <img className="relative z-10 h-9 w-9 object-contain brightness-0 invert" src={icon} alt={title} />
       </div>
 
-      <h3 className="font-bold text-sm text-white mb-2 uppercase tracking-widest">
+      <h3 className="mb-2 text-base font-black uppercase tracking-wide text-white">
         {title}
       </h3>
 
-      <p className="text-white text-xs leading-relaxed">
+      <p className="max-w-[180px] text-sm leading-snug text-zinc-300">
         {text}
       </p>
     </div>

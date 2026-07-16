@@ -8,8 +8,9 @@ import { Footer } from './components/Footer';
 import { Navbar } from './components/NavBar';
 import { About } from './components/About';
 import Features from './components/Features';
-
 import './app.css';
+import { Pillars } from './components/Pillars';
+import { TaekwondoKickScroll } from './components/TaekwondoKickScroll';
 
 export function App() {
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,8 @@ export function App() {
             <Hero />
             <About />
             <Features />
+            <Pillars/>
+            <TaekwondoKickScroll />
             <Benefits />
             <Classes />
             <Schedule />
@@ -57,4 +60,6 @@ export function App() {
       )}
     </>
   );
+
+
 }

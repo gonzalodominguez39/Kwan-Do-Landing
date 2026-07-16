@@ -4,16 +4,16 @@ import { IoLocationOutline } from "react-icons/io5";
 export function Contact() {
   return (
     <section className="py-24 md:py-32 bg-neutral-900" id="contact">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20">
         <div>
-          <h2 className="text-5xl font-black mb-12 uppercase italic">Ponte en Contacto</h2>
+          <h2 className="text-4xl sm:text-5xl font-black mb-10 sm:mb-12 uppercase italic">Ponte en Contacto</h2>
           <form className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
-              <input className="w-full bg-black border-2 border-white p-5 text-on-surface focus:border-primary focus:ring-0 outline-none font-bold uppercase italic transition-all" placeholder="Nombre" type="text"/>
-              <input className="w-full bg-black border-2 border-white p-5 text-on-surface focus:border-primary focus:ring-0 outline-none font-bold uppercase italic transition-all" placeholder="Email" type="email"/>
+              <input className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600" placeholder="Nombre" type="text"/>
+              <input className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600" placeholder="Email" type="email"/>
             </div>
-            <input className="w-full bg-black border-2 border-white p-5 text-on-surface focus:border-primary focus:ring-0 outline-none font-bold uppercase italic transition-all" placeholder="Asunto" type="text"/>
-            <textarea className="w-full bg-black border-2 border-white p-5 text-on-surface focus:border-primary focus:ring-0 outline-none font-bold uppercase italic transition-all" placeholder="Mensaje" rows={5}></textarea>
+            <input className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600" placeholder="Asunto" type="text"/>
+            <textarea className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600" placeholder="Mensaje" rows={5}></textarea>
             <button className="w-full bg-primary text-black py-6 font-black uppercase tracking-widest hover:bg-white hover:shadow-[8px_8px_0px_#00AEEF] transition-all active:scale-[0.98]">Enviar Mensaje</button>
           </form>
           <div className="mt-12 flex items-center gap-6">
@@ -23,7 +23,7 @@ export function Contact() {
             </a>
           </div>
         </div>
-        <div className="relative min-h-[360px] sm:min-h-[500px] border-4 border-white kinetic-border-blue">
+        <div className="relative min-h-[280px] sm:min-h-[440px] border-4 border-white kinetic-border-blue">
           <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center z-10">
             <div className="text-center">
               <IoLocationOutline className="text-primary text-7xl mb-6 mx-auto" />

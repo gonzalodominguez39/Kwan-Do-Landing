@@ -19,10 +19,19 @@
   --radius-full: 9999px;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body { 
   font-family: "Archivo Black", sans-serif;
   font-weight: 900;
   font-style: normal;
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -48,5 +57,14 @@ body {
     }
     .skew-kinetic-reverse {
         transform: skewX(6deg);
+    }
+    .scroll-hint {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #52525b;
     }
 }
