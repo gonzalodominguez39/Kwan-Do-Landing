@@ -1,27 +1,54 @@
-import { FaWhatsapp } from "react-icons/fa";
+import { useState } from "preact/hooks";
 import { IoLocationOutline } from "react-icons/io5";
+import { createWhatsappUrl } from "../lib/whatsapp";
+
+const initialFormState = {
+  name: "",
+  message: "",
+};
 
 export function Contact() {
+  const [formData, setFormData] = useState(initialFormState);
+
+  const handleSubmit = (event: Event) => {
+    event.preventDefault();
+
+    const message = `Hola, quisiera consultar sobre clases y horarios.\nNombre: ${formData.name || "Sin nombre"}\nMensaje: ${formData.message || "Sin mensaje"}`;
+    const whatsappUrl = createWhatsappUrl(message);
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <section className="py-24 md:py-32 bg-neutral-900" id="contact">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20">
         <div>
           <h2 className="text-4xl sm:text-5xl font-black mb-10 sm:mb-12 uppercase italic">Ponte en Contacto</h2>
-          <form className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <input className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600" placeholder="Nombre" type="text"/>
-              <input className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600" placeholder="Email" type="email"/>
-            </div>
-            <input className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600" placeholder="Asunto" type="text"/>
-            <textarea className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600" placeholder="Mensaje" rows={5}></textarea>
-            <button className="w-full bg-primary text-black py-6 font-black uppercase tracking-widest hover:bg-white hover:shadow-[8px_8px_0px_#00AEEF] transition-all active:scale-[0.98]">Enviar Mensaje</button>
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <input
+              className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600"
+              placeholder="Nombre"
+              type="text"
+              value={formData.name}
+              onInput={(event) => {
+                const target = event.currentTarget as HTMLInputElement;
+                setFormData((current) => ({ ...current, name: target.value }));
+              }}
+            />
+            <textarea
+              className="w-full bg-black border-2 border-white/60 p-4 sm:p-5 text-on-surface focus:border-primary focus:shadow-[0_0_0_3px_rgba(252,209,22,0.2)] focus:ring-0 outline-none font-bold uppercase italic transition-all placeholder:text-zinc-600"
+              placeholder="Tu consulta"
+              rows={5}
+              value={formData.message}
+              onInput={(event) => {
+                const target = event.currentTarget as HTMLTextAreaElement;
+                setFormData((current) => ({ ...current, message: target.value }));
+              }}
+            ></textarea>
+            <button type="submit" className="w-full bg-primary text-black py-6 font-black uppercase tracking-widest hover:bg-white hover:shadow-[8px_8px_0px_#00AEEF] transition-all active:scale-[0.98]">
+              Contactar
+            </button>
           </form>
-          <div className="mt-12 flex items-center gap-6">
-            <a className="flex items-center gap-3 bg-[#25D366] text-white px-8 py-4 font-black uppercase italic hover:scale-105 transition-transform skew-kinetic" href="#">
-              <FaWhatsapp className="text-2xl skew-kinetic-reverse" />
-              <span className="skew-kinetic-reverse">WhatsApp Support</span>
-            </a>
-          </div>
         </div>
         <div className="relative min-h-[280px] sm:min-h-[440px] border-4 border-white kinetic-border-blue">
           <div className="absolute inset-0 bg-neutral-950 flex items-center justify-center z-10">
@@ -37,4 +64,3 @@ export function Contact() {
     </section>
   );
 }
-

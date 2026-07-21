@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import cortesiaImg from "../assets/cortesia.jpg";
-import integridadImg from "../assets/integridad.png";
-import perseveranciaImg from "../assets/perseverancia.png";
-import autocontrolImg from "../assets/autocontrol.png";
-import espirituImg from "../assets/espiritu.jpg";
+
+const cortesiaImg = "/assets/cortesia.webp";
+const integridadImg = "/assets/integridad.webp";
+const perseveranciaImg = "/assets/perseverancia.webp";
+const autocontrolImg = "/assets/autocontrol.webp";
+const espirituImg = "/assets/espiritu.webp";
 const pillars = [
   {
     num: "01",

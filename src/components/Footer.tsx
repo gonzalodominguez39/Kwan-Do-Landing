@@ -1,15 +1,131 @@
+import { FaFistRaised, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { defaultWhatsappUrl, whatsappDisplayNumber } from "../lib/whatsapp";
+
+const logo = "/assets/KwanDo-Logo.webp";
+
+const navLinks = [
+  { label: "Inicio", href: "#home" },
+  { label: "Nosotros", href: "#about" },
+  { label: "Principios", href: "#pillars" },
+  { label: "Galería", href: "#gallery" },
+  { label: "Horarios", href: "#schedule" },
+  { label: "Contacto", href: "#contact" },
+];
+
+const usefulLinks = [
+  { label: "Preguntas frecuentes", href: "#contact" },
+  { label: "Técnica Yop Chagi", href: "#kick-animation" },
+  { label: "Beneficios del entrenamiento", href: "#training-benefits" },
+  { label: "Consultar horarios", href: "#schedule" },
+  { label: "Únete ahora", href: "#contact" },
+];
+
+function FooterTitle({ children }: { children: string }) {
+  return (
+    <div className="mb-8">
+      <h3 className="text-primary text-xl font-black uppercase tracking-tight">{children}</h3>
+      <span className="mt-4 block h-1 w-10 bg-primary" />
+    </div>
+  );
+}
+
+function FooterLink({ href, label }: { href: string; label: string }) {
+  return (
+    <a className="group flex items-center gap-4 text-sm sm:text-base font-black uppercase text-zinc-200 transition-colors hover:text-primary" href={href}>
+      <span className="text-primary transition-transform group-hover:translate-x-1">›</span>
+      {label}
+    </a>
+  );
+}
+
 export function Footer() {
   return (
-    <footer className="bg-neutral-950 w-full border-t-0">
-      <div className="flex flex-col md:flex-row justify-between items-center px-6 md:px-12 py-12 md:py-16 w-full max-w-screen-2xl mx-auto gap-8">
-        <div className="text-xl font-black text-yellow-400">KWAN-DO</div>
-        <p className="text-xs tracking-widest uppercase text-neutral-500 text-center md:text-left">
-            © 2024 KWAN-DO MARTIAL ARTS. ALL RIGHTS RESERVED.
-        </p>
-        <div className="flex flex-wrap justify-center gap-8 text-xs tracking-widest uppercase">
-          <a className="text-neutral-500 hover:text-yellow-400 underline decoration-2 underline-offset-4 opacity-80 transition-all" href="#">Privacy Policy</a>
-          <a className="text-neutral-500 hover:text-yellow-400 underline decoration-2 underline-offset-4 opacity-80 transition-all" href="#">Terms of Service</a>
-          <a className="text-neutral-500 hover:text-yellow-400 underline decoration-2 underline-offset-4 opacity-80 transition-all" href="#">WhatsApp Support</a>
+    <footer className="relative overflow-hidden bg-[#080808] text-white">
+      <div className="absolute inset-0 grainy-bg opacity-40" />
+      <div className="absolute inset-y-0 right-0 w-1/2 bg-[radial-gradient(circle_at_70%_30%,rgba(252,209,22,0.08),transparent_28%),linear-gradient(135deg,transparent_25%,rgba(255,255,255,0.035)_25%,rgba(255,255,255,0.035)_26%,transparent_26%)] opacity-60" />
+      <div className="relative h-1 bg-primary" />
+
+      <div className="relative mx-auto max-w-screen-2xl px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+        <div className="grid gap-12 lg:grid-cols-[1.15fr_0.8fr_0.9fr_1.05fr] lg:gap-16">
+          <div>
+            <img className="h-40 w-40 object-contain sm:h-48 sm:w-48" src={logo} alt="KWAN-DO Taekwon-Do ITF Argentina" />
+            <p className="mt-8 max-w-xs text-base font-medium leading-8 text-zinc-400">
+              Formamos personas íntegras a través del Taekwon-Do ITF, promoviendo disciplina, respeto y superación.
+            </p>
+          </div>
+
+          <nav aria-label="Navegación del footer">
+            <FooterTitle>Navegación</FooterTitle>
+            <div className="space-y-6">
+              {navLinks.map((link) => (
+                <FooterLink key={link.label} {...link} />
+              ))}
+            </div>
+          </nav>
+
+          <nav aria-label="Enlaces útiles">
+            <FooterTitle>Enlaces útiles</FooterTitle>
+            <div className="space-y-6">
+              {usefulLinks.map((link) => (
+                <FooterLink key={link.label} {...link} />
+              ))}
+            </div>
+          </nav>
+
+          <div>
+            <FooterTitle>Síguenos</FooterTitle>
+            <div className="space-y-5">
+              <a className="flex items-center gap-5 border-b border-white/15 pb-5 transition-colors hover:text-primary" href="https://www.instagram.com/kwandoitf/" target="_blank" rel="noopener noreferrer">
+                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-primary text-3xl text-white">
+                  <FaInstagram />
+                </span>
+                <span>
+                  <span className="block text-lg font-black uppercase">Instagram</span>
+                  <span className="block text-sm font-medium text-zinc-400">@kwando.itf</span>
+                </span>
+              </a>
+
+            
+              <a className="flex items-center gap-5 transition-colors hover:text-primary" href={defaultWhatsappUrl} target="_blank" rel="noopener noreferrer">
+                <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-primary text-3xl text-white">
+                  <FaWhatsapp />
+                </span>
+                <span>
+                  <span className="block text-lg font-black uppercase">WhatsApp</span>
+                  <span className="block text-sm font-medium text-zinc-400">{whatsappDisplayNumber}</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-16 border-t border-white/15 pt-9">
+          <div className="flex flex-wrap items-center gap-5 text-sm font-black uppercase tracking-wide text-zinc-100">
+            <FaFistRaised className="text-4xl text-primary" />
+            <span className="hidden h-12 w-px bg-white/25 sm:block" />
+            <span>Disciplina</span>
+            <span className="text-primary">•</span>
+            <span>Respeto</span>
+            <span className="text-primary">•</span>
+            <span>Integridad</span>
+            <span className="text-primary">•</span>
+            <span>Perseverancia</span>
+            <span className="text-primary">•</span>
+            <span>Autocontrol</span>
+            <span className="text-primary">•</span>
+            <span>Espíritu indomable</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative bg-white/[0.06] px-6 py-6 backdrop-blur-sm sm:px-10 lg:px-16">
+        <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 text-center text-xs font-black uppercase tracking-[0.16em] text-zinc-500 sm:flex-row sm:items-center sm:justify-between sm:text-left">
+          <p>© 2024 KWAN-DO Martial Arts. Todos los derechos reservados.</p>
+          <p>
+            <span className="text-primary">KWAN-DO</span>
+            <span className="mx-4 text-zinc-600">|</span>
+            Taekwon-Do ITF Argentina
+          </p>
         </div>
       </div>
     </footer>

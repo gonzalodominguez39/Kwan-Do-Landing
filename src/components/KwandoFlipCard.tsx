@@ -1,6 +1,7 @@
 import { useState, useRef } from "preact/hooks";
 import { motion } from "framer-motion";
-import logoSrc from '../assets/KwanDo-Logo.png';
+
+const logoSrc = "/assets/KwanDo-Logo.webp";
 
 interface KwandoFlipCardProps {
   title?: string;

@@ -11,7 +11,7 @@ export function Benefits() {
   return (
     <section
       className="py-20 sm:py-24 md:py-32 bg-neutral-900 border-y-4 border-primary/40"
-      id="benefits"
+      id="training-benefits"
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 md:mb-20">
@@ -82,141 +82,21 @@ export function Benefits() {
     </section>
   );
 }
-export function Classes() {
-  return (
-    <section className="py-20 sm:py-24 md:py-32 bg-neutral-950" id="classes">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16 md:mb-24">
-          <p className="text-primary font-black tracking-[0.3em] uppercase text-sm mb-4 text-center lg:text-left">
-            ENTRENAMIENTO PARA TODAS LAS EDADES
-          </p>
 
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase italic leading-none text-center lg:text-left">
-            PROGRAMAS
-            <br />
-            <span className="text-primary">KWAN-DO</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {/* Niños */}
-          <div className="group">
-            <div className="kinetic-border-blue overflow-hidden bg-black aspect-[4/3] md:aspect-[4/5] mb-8">
-              <img
-                alt="Kids martial arts"
-                src="..."
-                className="
-                  w-full h-full object-cover
-                  grayscale brightness-50
-                  group-hover:grayscale-0
-                  group-hover:brightness-100
-                  group-hover:scale-110
-                  transition-all duration-700
-                "
-              />
-            </div>
-
-            <h3 className="text-3xl sm:text-4xl font-black uppercase italic tracking-tight mb-4">
-              Niños
-            </h3>
-
-            <div className="h-1 bg-neutral-800 w-full mb-6">
-              <div className="h-full bg-logo-blue w-1/3" />
-            </div>
-
-            <p className="text-on-surface/60 text-lg">
-              Psicomotricidad y valores fundamentales desde temprana edad.
-            </p>
-          </div>
-
-          {/* Jóvenes */}
-          <div className="group md:-mt-8 lg:-mt-12">
-            <div className="kinetic-border-red overflow-hidden bg-black aspect-[4/3] md:aspect-[4/5] mb-8">
-              <img
-                alt="Teen training"
-                src="..."
-                className="
-                  w-full h-full object-cover
-                  grayscale brightness-50
-                  group-hover:grayscale-0
-                  group-hover:brightness-100
-                  group-hover:scale-110
-                  transition-all duration-700
-                "
-              />
-            </div>
-
-            <h3 className="text-3xl sm:text-4xl font-black uppercase italic tracking-tight mb-4">
-              Jóvenes
-            </h3>
-
-            <div className="h-1 bg-neutral-800 w-full mb-6">
-              <div className="h-full bg-logo-red w-2/3" />
-            </div>
-
-            <p className="text-on-surface/60 text-lg">
-              Desarrollo físico explosivo y enfoque mental competitivo.
-            </p>
-          </div>
-
-          {/* Adultos */}
-          <div className="group">
-            <div className="kinetic-border overflow-hidden bg-black aspect-[4/3] md:aspect-[4/5] mb-8">
-              <img
-                alt="Adult sparring"
-                src="..."
-                className="
-                  w-full h-full object-cover
-                  grayscale brightness-50
-                  group-hover:grayscale-0
-                  group-hover:brightness-100
-                  group-hover:scale-110
-                  transition-all duration-700
-                "
-              />
-            </div>
-
-            <h3 className="text-3xl sm:text-4xl font-black uppercase italic tracking-tight mb-4">
-              Adultos
-            </h3>
-
-            <div className="h-1 bg-neutral-800 w-full mb-6">
-              <div className="h-full bg-primary w-full" />
-            </div>
-
-            <p className="text-on-surface/60 text-lg">
-              Manejo de estrés y defensa personal de alto nivel.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}export function Schedule() {
+export function Schedule() {
   const scheduleData = [
     {
-      hora: "17:00",
-      lunesMiercoles: "Infantiles A",
-      martesJueves: "Infantiles B",
-      viernes: "Técnica Especial",
+      hora: "18:30 - 20:00",
+      dias: "Lunes / Miércoles / Viernes",
+      clase: "Infantiles / Cadetes",
       color: "text-logo-blue",
       bgColor: "bg-logo-blue/10",
       borderColor: "border-l-logo-blue",
     },
     {
-      hora: "18:30",
-      lunesMiercoles: "Juveniles",
-      martesJueves: "Juveniles",
-      viernes: "Combate",
-      color: "text-logo-red",
-      bgColor: "bg-logo-red/10",
-      borderColor: "border-l-logo-red",
-    },
-    {
-      hora: "20:00",
-      lunesMiercoles: "Adultos",
-      martesJueves: "Adultos",
-      viernes: "Cinto Negro",
+      hora: "20:30 - 22:00",
+      dias: "Lunes / Miércoles / Viernes",
+      clase: "Adultos",
       color: "text-primary",
       bgColor: "bg-primary/10",
       borderColor: "border-l-primary",
@@ -259,17 +139,13 @@ export function Classes() {
               </div>
 
               <div className="space-y-3 uppercase font-bold">
-                <div className="flex justify-between items-center">
-                  <span className="text-white/40 text-sm">Lunes / Miércoles</span>
-                  <span className="text-white">{item.lunesMiercoles}</span>
+                <div className="flex justify-between items-start gap-4">
+                  <span className="text-white/40 text-sm">Días</span>
+                  <span className="text-white text-right">{item.dias}</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-white/40 text-sm">Martes / Jueves</span>
-                  <span className="text-white">{item.martesJueves}</span>
-                </div>
-                <div className="flex justify-between items-center pt-2 border-t border-white/10">
-                  <span className="text-white/40 text-sm">Viernes</span>
-                  <span className={`${item.color} font-black`}>{item.viernes}</span>
+                <div className="flex justify-between items-start gap-4 pt-2 border-t border-white/10">
+                  <span className="text-white/40 text-sm">Clase</span>
+                  <span className={`${item.color} font-black text-right`}>{item.clase}</span>
                 </div>
               </div>
             </motion.div>
@@ -286,13 +162,10 @@ export function Classes() {
                     Horario
                   </th>
                   <th className="text-left p-5 text-white/40 font-bold uppercase text-sm tracking-wider">
-                    Lunes / Miércoles
+                    Días
                   </th>
                   <th className="text-left p-5 text-white/40 font-bold uppercase text-sm tracking-wider">
-                    Martes / Jueves
-                  </th>
-                  <th className="text-left p-5 text-white/40 font-bold uppercase text-sm tracking-wider">
-                    Viernes
+                    Clase
                   </th>
                 </tr>
               </thead>
@@ -312,14 +185,11 @@ export function Classes() {
                       </span>
                     </td>
                     <td className="p-5 text-white font-medium">
-                      {item.lunesMiercoles}
-                    </td>
-                    <td className="p-5 text-white font-medium">
-                      {item.martesJueves}
+                      {item.dias}
                     </td>
                     <td className="p-5">
                       <span className={`${item.color} font-black`}>
-                        {item.viernes}
+                        {item.clase}
                       </span>
                     </td>
                   </motion.tr>
@@ -332,11 +202,7 @@ export function Classes() {
           <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-logo-blue rounded-full" />
-              <span className="text-white/60">Infantil</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-logo-red rounded-full" />
-              <span className="text-white/60">Juvenil</span>
+              <span className="text-white/60">Infantiles / Cadetes</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-primary rounded-full" />

@@ -1,16 +1,19 @@
 import { useEffect, useState } from "preact/hooks";
 import { IoChatbubbleEllipsesOutline, IoMenuOutline, IoCloseOutline } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from '../assets/KwanDo-Logo.png';
+
+const logo = "/assets/KwanDo-Logo.webp";
 
 export function Navbar() {
-  const [activeItem, setActiveItem] = useState("about");
+  const [activeItem, setActiveItem] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { id: "about", name: "Nosotros" },
-    { id: "benefits", name: "Beneficios" },
-    { id: "classes", name: "Clases" },
+    { id: "home", name: "Inicio" },
+
+    { id: "pillars", name: "Principios" },
+    { id: "gallery", name: "Galería" },
+    { id: "schedule", name: "Horarios" },
     { id: "contact", name: "Contacto" },
   ];
 
@@ -18,7 +21,7 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map((item) => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 140;
 
       sections.forEach((section, index) => {
         if (section && section.offsetTop <= scrollPosition && (section.offsetTop + section.offsetHeight) > scrollPosition) {
@@ -53,14 +56,14 @@ export function Navbar() {
         </div>
 
         {/* LINKS (Desktop) */}
-        <div className="hidden md:flex items-center space-x-12 font-bold">
+        <div className="hidden md:flex items-center gap-6 lg:gap-9 font-bold">
           {navItems.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               onClick={() => setActiveItem(item.id)}
               className={`
-                relative text-base tracking-widest transition-all duration-300 flex items-center group
+                relative text-sm lg:text-base tracking-widest transition-all duration-300 flex items-center group
                 ${activeItem === item.id ? 'text-yellow-400' : 'text-neutral-400 hover:text-white'}
               `}
             >
@@ -79,9 +82,9 @@ export function Navbar() {
         <div className="flex items-center gap-4 md:gap-6">
           <IoChatbubbleEllipsesOutline className="text-2xl text-yellow-400 cursor-pointer hover:scale-125 transition-transform duration-300" />
           
-          <button className="hidden md:block bg-yellow-400 text-black px-6 md:px-8 py-2.5 font-black uppercase tracking-widest text-xs hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-[4px_4px_0px_white]">
-            Join Now
-          </button>
+          <a href="#contact" className="hidden md:block bg-yellow-400 text-black px-6 md:px-8 py-2.5 font-black uppercase tracking-widest text-xs hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-[4px_4px_0px_white]">
+            Consultar
+          </a>
 
           {/* Botón de Menú Móvil */}
           <button 
@@ -126,14 +129,16 @@ export function Navbar() {
               ))}
 
               {/* CTA dentro del menú móvil para pantallas muy chicas */}
-              <motion.button 
+              <motion.a
+                href="#contact"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navItems.length * 0.05 }}
-                 className="sm:hidden mt-6 bg-yellow-400 text-black px-10 py-4 font-black uppercase tracking-widest text-sm shadow-[4px_4px_0px_white]"
+                onClick={() => setIsOpen(false)}
+                className="sm:hidden mt-6 bg-yellow-400 text-black px-10 py-4 font-black uppercase tracking-widest text-sm shadow-[4px_4px_0px_white]"
               >
-                Join Now
-              </motion.button>
+                Consultar
+              </motion.a>
             </div>
           </motion.div>
         )}

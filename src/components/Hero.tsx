@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 import { FaArrowRight, FaClock } from "react-icons/fa";
-import disciplineImg from '../assets/discipline.png';
-import respectImg from '../assets/respect.png';
-import improveImg from '../assets/improvement.png';
+
+const disciplineImg = "/assets/discipline.webp";
+const respectImg = "/assets/respect.webp";
+const improveImg = "/assets/improvement.webp";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[108vh] md:min-h-[116vh] mt-16 md:mt-24 overflow-hidden bg-neutral-950">
+    <section id="home" className="relative min-h-[108vh] md:min-h-[116vh] mt-16 md:mt-24 overflow-hidden bg-neutral-950">
       {/* Background */}
      <div
   className="absolute inset-0 bg-cover bg-center bg-no-repeat"
   style={{
-    backgroundImage: "url('/background.jpeg')",
+    backgroundImage: "url('/background.webp')",
     backgroundPosition: "center top", 
   }}
 />

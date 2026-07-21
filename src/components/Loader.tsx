@@ -1,6 +1,7 @@
 import { useState, useEffect } from "preact/hooks";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/KwanDo-Logo.png";
+
+const logo = "/assets/KwanDo-Logo.webp";
 
 const DURATION = 2.4; 
 
