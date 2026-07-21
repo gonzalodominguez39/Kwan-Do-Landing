@@ -102,10 +102,13 @@ export default function Hero() {
             transition={{ delay: 0.6 }}
             className="flex flex-wrap gap-4 mt-10"
           >
-            <button className="flex items-center gap-3 bg-yellow-400 text-black font-bold text-sm px-8 py-3.5 rounded-xl hover:scale-105 transition tracking-wide">
-              Comenzar Ahora
+            <a
+              href="#downloads"
+              className="flex items-center gap-3 bg-yellow-400 text-black font-bold text-sm px-8 py-3.5 rounded-xl hover:scale-105 transition tracking-wide"
+            >
+              Descargá la Teoría
               <FaArrowRight />
-            </button>
+            </a>
 
             <button className="flex items-center gap-2 border border-white/15 px-8 py-3.5 rounded-xl text-zinc-300 text-sm hover:border-yellow-400/50 transition">
               <FaClock className="text-yellow-400/70" />

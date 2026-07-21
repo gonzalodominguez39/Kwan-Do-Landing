@@ -1,7 +1,22 @@
+import { useRef } from "react";
 import { FaFistRaised, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { defaultWhatsappUrl, whatsappDisplayNumber } from "../lib/whatsapp";
 
 const logo = "/assets/KwanDo-Logo.webp";
+
+const schoolLogos = [
+  { name: "AC Taekwondo",       src: "/assets/AC TAEKWONDO_20260224_005347_0000.png" },
+  { name: "AL Taekwondo",       src: "/assets/AL TAEKWONDO_20260224_005150_0000.png" },
+  { name: "GS",                 src: "/assets/GS_20260224_004514_0000.png" },
+  { name: "HH",                 src: "/assets/HH_20260224_004355_0000.png" },
+  { name: "Loto Team",          src: "/assets/LOTO TEAM_20260224_005315_0000.png" },
+  { name: "MB",                 src: "/assets/MB BLANCO_20260224_005459_0000.png" },
+  { name: "MT",                 src: "/assets/MT_20260224_004601_0000.png" },
+  { name: "Team Llanos",        src: "/assets/TEAM LLANOS_20260224_004643_0000.png" },
+  { name: "Team Salvatierra",   src: "/assets/TEAM SALVATIERRA_20260224_004803_0000.png" },
+  { name: "Team Yocca",         src: "/assets/TEAM YOCCA_20260224_004213_0000.png" },
+  { name: "Tim Didot",          src: "/assets/TIM DIDOT_20260224_004733_0000.png" },
+];
 
 const navLinks = [
   { label: "Inicio", href: "#home" },
@@ -35,6 +50,34 @@ function FooterLink({ href, label }: { href: string; label: string }) {
       <span className="text-primary transition-transform group-hover:translate-x-1">›</span>
       {label}
     </a>
+  );
+}
+
+/** Infinite auto-scrolling marquee of school logos */
+function SchoolLogosMarquee() {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // duplicate list so the marquee loops seamlessly
+  const doubled = [...schoolLogos, ...schoolLogos];
+
+  return (
+    <div
+      className="school-marquee-wrapper"
+      onMouseEnter={() => { if (trackRef.current) trackRef.current.style.animationPlayState = "paused"; }}
+      onMouseLeave={() => { if (trackRef.current) trackRef.current.style.animationPlayState = "running"; }}
+    >
+      <div ref={trackRef} className="school-marquee-track">
+        {doubled.map((school, i) => (
+          <div key={i} className="school-logo-card" title={school.name}>
+            <img
+              src={school.src}
+              alt={school.name}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -85,7 +128,6 @@ export function Footer() {
                 </span>
               </a>
 
-            
               <a className="flex items-center gap-5 transition-colors hover:text-primary" href={defaultWhatsappUrl} target="_blank" rel="noopener noreferrer">
                 <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-primary text-3xl text-white">
                   <FaWhatsapp />
@@ -97,6 +139,15 @@ export function Footer() {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* ── Escuelas que conforman KWAN-DO ── */}
+        <div className="mt-20 border-t border-white/10 pt-14">
+          <div className="mb-10 text-center">
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-500">Escuelas que conforman</p>
+            <h3 className="mt-2 text-2xl font-black uppercase tracking-tight text-primary sm:text-3xl">KWAN-DO</h3>
+          </div>
+          <SchoolLogosMarquee />
         </div>
 
         <div className="mt-16 border-t border-white/15 pt-9">

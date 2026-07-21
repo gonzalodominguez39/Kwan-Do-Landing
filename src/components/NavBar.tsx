@@ -80,11 +80,17 @@ export function Navbar() {
 
         {/* CTA & ACCIONES (Desktop & Mobile Trigger) */}
         <div className="flex items-center gap-4 md:gap-6">
-          <IoChatbubbleEllipsesOutline className="text-2xl text-yellow-400 cursor-pointer hover:scale-125 transition-transform duration-300" />
+          <IoChatbubbleEllipsesOutline
+            className="text-2xl text-yellow-400 cursor-pointer hover:scale-125 transition-transform duration-300"
+            onClick={() => window.dispatchEvent(new CustomEvent('kwan:openConsulta'))}
+          />
           
-          <a href="#contact" className="hidden md:block bg-yellow-400 text-black px-6 md:px-8 py-2.5 font-black uppercase tracking-widest text-xs hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-[4px_4px_0px_white]">
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('kwan:openConsulta'))}
+            className="hidden md:block bg-yellow-400 text-black px-6 md:px-8 py-2.5 font-black uppercase tracking-widest text-xs hover:bg-white hover:scale-105 active:scale-95 transition-all duration-300 shadow-[4px_4px_0px_white]"
+          >
             Consultar
-          </a>
+          </button>
 
           {/* Botón de Menú Móvil */}
           <button 
@@ -129,16 +135,18 @@ export function Navbar() {
               ))}
 
               {/* CTA dentro del menú móvil para pantallas muy chicas */}
-              <motion.a
-                href="#contact"
+              <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navItems.length * 0.05 }}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  window.dispatchEvent(new CustomEvent('kwan:openConsulta'));
+                }}
                 className="sm:hidden mt-6 bg-yellow-400 text-black px-10 py-4 font-black uppercase tracking-widest text-sm shadow-[4px_4px_0px_white]"
               >
                 Consultar
-              </motion.a>
+              </motion.button>
             </div>
           </motion.div>
         )}
