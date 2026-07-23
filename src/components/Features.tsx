@@ -48,7 +48,7 @@ export default function Features() {
   };
 
   return (
-    <section id="features" className="bg-zinc-950 text-white py-20 px-6 sm:px-12 lg:px-20 border-t border-zinc-900">
+    <section id="features" className="bg-zinc-950 text-white py-20 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         
         {/* SECCIÓN SUPERIOR: Imagen e Info */}
@@ -108,8 +108,8 @@ export default function Features() {
           <div className="absolute inset-0 bg-black/38" />
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/75 via-zinc-950/10 to-zinc-950/75" />
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/85 via-transparent to-zinc-950/40" />
-          <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-zinc-950 via-zinc-950/70 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-zinc-950 via-zinc-950/70 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-zinc-950 via-zinc-950/90 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-zinc-950 via-zinc-950/95 to-transparent" />
 
           <div className="relative z-10 mx-auto w-full max-w-7xl">
             <span className="text-yellow-400 font-black uppercase tracking-widest text-xs block mb-3 italic">

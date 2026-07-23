@@ -149,7 +149,7 @@ export const translations = {
           eyebrow: "Fase 04",
           label: "Recuperación",
           title: ["Equilibrio y", "Guardia Final"],
-          body: "La pierna es recogida con control siguiendo el mismo vector de entrada, manteniendo el equilibrio dinámico y regresando a la guardia sin perder la estabilidad.",
+          body: "La pierna Extendida en su totalidad, manteniendo el control del cuerpo.",
         },
       ],
     },
@@ -234,7 +234,7 @@ export const translations = {
       ],
       usefulLinks: [
         { label: "Técnica Yop Chagi", href: "#kick-animation" },
-        { label: "Beneficios del entrenamiento", href: "#training-benefits" },
+        { label: "Presidente & Dirección Técnica", href: "#training-benefits" },
         { label: "Consultar horarios", href: "#schedule" },
         { label: "Únete ahora", href: "#contact" },
       ],

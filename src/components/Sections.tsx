@@ -9,70 +9,96 @@ export function Benefits() {
 
   return (
     <section
-      className="py-20 sm:py-24 md:py-32 bg-neutral-900 border-y-4 border-primary/40"
+      className="py-24 sm:py-28 md:py-36 bg-neutral-950 relative overflow-hidden border-y border-white/10"
       id="training-benefits"
     >
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16 md:mb-20">
-          <p className="text-primary font-black tracking-[0.25em] uppercase text-sm mb-4">
-            {t.benefits.label}
-          </p>
+      {/* Resplandor radial de fondo */}
+      <div className="absolute inset-0 grainy-bg opacity-30 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-yellow-400/5 blur-[120px] rounded-full pointer-events-none" />
 
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black uppercase italic leading-none">
-            {t.benefits.title1}
-            <br />
-            {t.benefits.title2}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Foto del Sabonim */}
           <motion.div
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            className="kinetic-border bg-black p-6 sm:p-8 lg:p-10 min-h-[320px] flex flex-col"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 relative"
           >
-            <IoShieldOutline className="text-primary text-5xl mb-8" />
-
-            <h3 className="text-3xl font-black uppercase mb-4">
-              {t.benefits.card1Title}
-            </h3>
-
-            <p className="text-on-surface/60 text-lg mt-auto">
-              {t.benefits.card1Text}
-            </p>
+            <div className="relative rounded-2xl overflow-hidden border-2 border-yellow-400/40 shadow-[0_0_50px_rgba(252,209,22,0.15)] bg-neutral-900 group">
+              <img
+                src="/assets/Sabonim.webp"
+                alt="Sabonim Esteban Gabriel Contardi - VI Dan Taekwondo ITF"
+                className="w-full h-auto object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent" />
+              
+              {/* Badge de Grado sobre la imagen */}
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between bg-black/85 backdrop-blur-md border border-white/10 p-4 rounded-xl">
+                <div>
+                  <p className="text-yellow-400 font-black uppercase text-xs tracking-widest">Bicampeón Mundial</p>
+                  <p className="text-white font-bold text-sm tracking-wide">VI Dan Internacional</p>
+                </div>
+                <span className="text-2xl font-black text-yellow-400" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  ITF
+                </span>
+              </div>
+            </div>
           </motion.div>
 
+          {/* Información del Presidente e Instructor */}
           <motion.div
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            className="kinetic-border-blue bg-black p-6 sm:p-8 lg:p-10 min-h-[320px] flex flex-col"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-7 flex flex-col justify-center"
           >
-            <FaBrain className="text-logo-blue text-5xl mb-8" />
+            <span className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/30 rounded-full px-4 py-1.5 text-[10px] font-semibold text-yellow-400 uppercase tracking-[0.2em] mb-4 w-fit">
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+              Dirección Técnica
+            </span>
 
-            <h3 className="text-3xl font-black uppercase mb-4">
-              {t.benefits.card2Title}
-            </h3>
+            <h2
+              className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase italic leading-[0.95] tracking-wide text-white mb-6"
+              style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+            >
+              Sabonim Esteban <br />
+              <span className="text-yellow-400">Gabriel Contardi</span>
+            </h2>
 
-            <p className="text-on-surface/60 text-lg mt-auto">
-              {t.benefits.card2Text}
+            <p className="text-yellow-400/90 font-bold uppercase tracking-widest text-xs sm:text-sm mb-6">
+              Presidente e Instructor de Kwan-Do · VI Dan Taekwondo ITF
             </p>
+
+            <div className="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed mb-8">
+              <p className="border-l-2 border-yellow-400 pl-4">
+                Referente de la organización Kwan-Do. Dedicado a la formación marcial integral y a la preservación de los principios éticos del Taekwondo ITF.
+              </p>
+              <p className="border-l-2 border-white/20 pl-4 text-zinc-400">
+                Con décadas de trayectoria en la enseñanza, preparación competitiva y transmisión de valores, impulsa el crecimiento continuo de instructores y alumnos en cada una de las escuelas de la asociación.
+              </p>
+            </div>
+
+            {/* Ficha técnica de credenciales */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-white/10 pt-6">
+              <div className="bg-neutral-900/60 border border-white/5 p-4 rounded-xl">
+                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Cargo</p>
+                <p className="text-xs sm:text-sm font-black text-white uppercase italic mt-1">Presidente Kwan-Do</p>
+              </div>
+              <div className="bg-neutral-900/60 border border-white/5 p-4 rounded-xl">
+                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Categoría</p>
+                <p className="text-xs sm:text-sm font-black text-yellow-400 uppercase italic mt-1">VI Dan ITF</p>
+              </div>
+              <div className="col-span-2 sm:col-span-1 bg-neutral-900/60 border border-white/5 p-4 rounded-xl">
+                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Disciplina</p>
+                <p className="text-xs sm:text-sm font-black text-white uppercase italic mt-1">Taekwon-Do ITF</p>
+              </div>
+            </div>
           </motion.div>
 
-          <motion.div
-            whileHover={{ y: -8, scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-            className="kinetic-border-red bg-black p-6 sm:p-8 lg:p-10 min-h-[320px] flex flex-col"
-          >
-            <IoFitnessOutline className="text-logo-red text-5xl mb-8" />
-
-            <h3 className="text-3xl font-black uppercase mb-4">
-              {t.benefits.card3Title}
-            </h3>
-
-            <p className="text-on-surface/60 text-lg mt-auto">
-              {t.benefits.card3Text}
-            </p>
-          </motion.div>
         </div>
       </div>
     </section>

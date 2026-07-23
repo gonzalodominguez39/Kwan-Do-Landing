@@ -14,9 +14,9 @@ export function TaekwondoKickScroll() {
   const totalFrames = 30;
 
   const PHASE_RANGES = [
-    [0.0, 0.06, 0.15, 0.21],
-    [0.25, 0.31, 0.43, 0.49],
-    [0.52, 0.58, 0.67, 0.73],
+    [0.0, 0.08, 0.18, 0.23],
+    [0.26, 0.32, 0.43, 0.48],
+    [0.51, 0.57, 0.68, 0.73],
     [0.76, 0.82, 1.0],
   ] as const;
 
@@ -26,7 +26,7 @@ export function TaekwondoKickScroll() {
 
     for (let i = 1; i <= totalFrames; i++) {
       const img = new Image();
-      const frameNum = String(i).padStart(3, "0");
+      const frameNum = String(i);
       img.src = `/frames_sinfondo/frame-${frameNum}.webp`;
 
       const handleImageLoad = () => {
@@ -49,6 +49,7 @@ export function TaekwondoKickScroll() {
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
+      // Orden invertido: scroll 0 -> frame 30 (primer movimiento), scroll 1 -> frame 1 (extensión final)
       const frame = Math.max(
         1,
         Math.min(totalFrames, totalFrames - Math.round(latest * (totalFrames - 1)))
@@ -72,8 +73,8 @@ export function TaekwondoKickScroll() {
   });
 
   const activePhase = useTransform(scrollYProgress, (v) => {
-    if (v < 0.24) return 0;
-    if (v < 0.505) return 1;
+    if (v < 0.245) return 0;
+    if (v < 0.495) return 1;
     if (v < 0.745) return 2;
     return 3;
   });

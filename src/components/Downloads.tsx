@@ -57,11 +57,19 @@ export function Downloads() {
   return (
     <section
       id="downloads"
-      className="relative overflow-hidden bg-[#080808] py-24 sm:py-28 md:py-36 border-y border-white/10"
+      className="relative overflow-hidden bg-zinc-950 py-24 sm:py-28 md:py-36"
     >
-      {/* Background texture */}
-      <div className="absolute inset-0 grainy-bg opacity-30 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(252,209,22,0.07),transparent)] pointer-events-none" />
+      {/* Background Image: lucha.webp */}
+      <div
+        className="absolute inset-0 bg-cover bg-center grayscale contrast-125 opacity-35"
+        style={{ backgroundImage: "url('/assets/lucha.webp')" }}
+      />
+
+      {/* Gradient Overlays para transición suave sin cortes arriba ni abajo */}
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-zinc-950 via-zinc-950/90 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-zinc-950 via-zinc-950/90 to-transparent" />
+      <div className="absolute inset-0 grainy-bg opacity-20 pointer-events-none" />
 
       <div className="relative max-w-5xl mx-auto px-6 sm:px-10">
         {/* Header */}
