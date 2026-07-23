@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { IoCloseOutline } from "react-icons/io5";
 import { FaWhatsapp } from "react-icons/fa";
 import { createWhatsappUrl } from "../lib/whatsapp";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface ConsultaModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface ConsultaModalProps {
 const initialState = { name: "", message: "" };
 
 export function ConsultaModal({ isOpen, onClose }: ConsultaModalProps) {
+  const { t } = useLanguage();
   const [form, setForm] = useState(initialState);
   const nameRef = useRef<HTMLInputElement>(null);
 
@@ -41,7 +43,7 @@ export function ConsultaModal({ isOpen, onClose }: ConsultaModalProps) {
 
   const handleSubmit = (e: Event) => {
     e.preventDefault();
-    const text = `Hola KWAN-DO! Soy ${form.name || "un interesado"}.\n${form.message || "Quisiera consultar sobre clases y horarios."}`;
+    const text = `${t.modal.whatsappIntro} ${form.name || t.modal.whatsappDefault}.\n${form.message || t.modal.whatsappDefaultMsg}`;
     window.open(createWhatsappUrl(text), "_blank", "noopener,noreferrer");
     onClose();
   };
@@ -80,14 +82,14 @@ export function ConsultaModal({ isOpen, onClose }: ConsultaModalProps) {
             {/* Header */}
             <div className="consulta-modal-header">
               <div>
-                <p className="consulta-modal-eyebrow">Escribinos</p>
+                <p className="consulta-modal-eyebrow">{t.modal.eyebrow}</p>
                 <h2 id="consulta-title" className="consulta-modal-title">
-                  Hacé tu consulta
+                  {t.modal.title}
                 </h2>
               </div>
               <button
                 onClick={onClose}
-                aria-label="Cerrar"
+                aria-label={t.modal.ariaClose}
                 className="consulta-close-btn"
               >
                 <IoCloseOutline />
@@ -98,17 +100,17 @@ export function ConsultaModal({ isOpen, onClose }: ConsultaModalProps) {
             <form onSubmit={handleSubmit} className="consulta-modal-body">
               <div className="consulta-field-group">
                 <label htmlFor="consulta-name" className="consulta-label">
-                  Tu nombre
+                  {t.modal.nameLabel}
                 </label>
                 <input
                   id="consulta-name"
                   ref={nameRef}
                   type="text"
-                  placeholder="Ej: Juan García"
+                  placeholder={t.modal.namePlaceholder}
                   value={form.name}
                   onInput={(e) => {
-                    const t = e.currentTarget as HTMLInputElement;
-                    setForm((f) => ({ ...f, name: t.value }));
+                    const t2 = e.currentTarget as HTMLInputElement;
+                    setForm((f) => ({ ...f, name: t2.value }));
                   }}
                   className="consulta-input"
                 />
@@ -116,16 +118,16 @@ export function ConsultaModal({ isOpen, onClose }: ConsultaModalProps) {
 
               <div className="consulta-field-group">
                 <label htmlFor="consulta-msg" className="consulta-label">
-                  Tu mensaje
+                  {t.modal.messageLabel}
                 </label>
                 <textarea
                   id="consulta-msg"
                   rows={4}
-                  placeholder="Contanos qué querés saber..."
+                  placeholder={t.modal.messagePlaceholder}
                   value={form.message}
                   onInput={(e) => {
-                    const t = e.currentTarget as HTMLTextAreaElement;
-                    setForm((f) => ({ ...f, message: t.value }));
+                    const t2 = e.currentTarget as HTMLTextAreaElement;
+                    setForm((f) => ({ ...f, message: t2.value }));
                   }}
                   className="consulta-input consulta-textarea"
                 />
@@ -133,11 +135,11 @@ export function ConsultaModal({ isOpen, onClose }: ConsultaModalProps) {
 
               <button type="submit" className="consulta-submit-btn">
                 <FaWhatsapp className="consulta-submit-icon" />
-                Enviar por WhatsApp
+                {t.modal.submitBtn}
               </button>
 
               <p className="consulta-hint">
-                Al hacer clic serás redirigido a WhatsApp con tu mensaje listo para enviar.
+                {t.modal.hint}
               </p>
             </form>
           </motion.div>

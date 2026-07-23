@@ -1,61 +1,30 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const cortesiaImg = "/assets/cortesia.webp";
 const integridadImg = "/assets/integridad.webp";
 const perseveranciaImg = "/assets/perseverancia.webp";
 const autocontrolImg = "/assets/autocontrol.webp";
 const espirituImg = "/assets/espiritu.webp";
-const pillars = [
-  {
-    num: "01",
-    name: "Cortesía",
-    korean: "Ye-Ui",
-    hanja: "禮義",
-    description:
-      "El respeto hacia el instructor, los compañeros y uno mismo es la puerta de entrada al camino marcial. Sin cortesía no hay aprendizaje verdadero.",
-    photo: cortesiaImg,
-  },
-  {
-    num: "02",
-    name: "Integridad",
-    korean: "Yom-Chi",
-    hanja: "廉恥",
-    description:
-      "Actuar con honestidad dentro y fuera del dojang. La integridad es la diferencia entre saber pelear y ser un verdadero artista marcial.",
-    photo: integridadImg,
-  },
-  {
-    num: "03",
-    name: "Perseverancia",
-    korean: "In-Nae",
-    hanja: "忍耐",
-    description:
-      "Cada caída es parte del entrenamiento. Levantarse siempre, superar los límites y nunca abandonar ante la adversidad.",
-    photo: perseveranciaImg,
-  },
-  {
-    num: "04",
-    name: "Autocontrol",
-    korean: "Guk-Gi",
-    hanja: "克己",
-    description:
-      "La fuerza más difícil de dominar es la propia. El autocontrol en el combate y en la vida define al verdadero practicante.",
-    photo: autocontrolImg,
-  },
-  {
-    num: "05",
-    name: "Espíritu Indomable",
-    korean: "Baekjul-Boolgool",
-    hanja: "百折不屈",
-    description:
-      "Un espíritu que no puede ser doblegado. Frente a la injusticia, la duda o el dolor, el verdadero guerrero permanece de pie.",
-    photo: espirituImg,
-  },
-];
+
+const PILLAR_IMAGES = [cortesiaImg, integridadImg, perseveranciaImg, autocontrolImg, espirituImg];
+const PILLAR_KOREAN = ["Ye-Ui", "Yom-Chi", "In-Nae", "Guk-Gi", "Baekjul-Boolgool"];
+const PILLAR_HANJA = ["禮義", "廉恥", "忍耐", "克己", "百折不屈"];
+const PILLAR_NUMS = ["01", "02", "03", "04", "05"];
 
 export function Pillars() {
+  const { t } = useLanguage();
   const [active, setActive] = useState<number | null>(null);
+
+  const pillars = t.pillars.items.map((item, i) => ({
+    num: PILLAR_NUMS[i],
+    name: item.name,
+    korean: PILLAR_KOREAN[i],
+    hanja: PILLAR_HANJA[i],
+    description: item.description,
+    photo: PILLAR_IMAGES[i],
+  }));
 
   const handleClick = (idx: number) => {
     setActive((prev) => (prev === idx ? null : idx));
@@ -70,19 +39,19 @@ export function Pillars() {
           <div>
             <span className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/30 rounded-full px-4 py-1.5 text-[10px] font-semibold text-yellow-400 uppercase tracking-[0.14em] mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
-              Filosofía ITF
+              {t.pillars.badge}
             </span>
             <h2
               className="text-[44px] sm:text-[58px] leading-[0.9] uppercase"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              Los 5 Principios
+              {t.pillars.title1}
               <br />
-              <span className="text-yellow-400">del Taekwondo</span>
+              <span className="text-yellow-400">{t.pillars.title2}</span>
             </h2>
           </div>
           <p className="text-zinc-500 text-sm max-w-xs leading-relaxed">
-            Seleccioná un principio para conocer su significado y su lugar en el camino del Kwan-Do.
+            {t.pillars.subtitle}
           </p>
         </div>
 
@@ -333,7 +302,7 @@ export function Pillars() {
                           onClick={(e) => { e.stopPropagation(); setActive(null); }}
                         >
                           <span className="w-4 h-px bg-current" />
-                          Cerrar
+                          {t.pillars.closeBtnLabel}
                         </motion.button>
                       </div>
                     </motion.div>
@@ -348,10 +317,10 @@ export function Pillars() {
         <div className="flex items-center justify-center gap-3 mt-8">
           <span className="w-6 h-px bg-white/10" />
           <p className="text-zinc-700 text-[9px] uppercase tracking-[0.2em] hidden md:block">
-            Seleccioná un principio para expandirlo
+            {t.pillars.hintDesktop}
           </p>
           <p className="text-zinc-700 text-[9px] uppercase tracking-[0.2em] md:hidden">
-            Tocá un principio para expandirlo
+            {t.pillars.hintMobile}
           </p>
           <span className="w-6 h-px bg-white/10" />
         </div>

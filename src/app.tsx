@@ -1,6 +1,7 @@
 import { useState, useEffect } from "preact/hooks";
 import { AnimatePresence, motion } from "framer-motion";
 import { Loader } from "./components/Loader";
+import { VideoBanner } from "./components/VideoBanner";
 import Hero from "./components/Hero";
 import { Benefits, Schedule } from "./components/Sections";
 import { Contact } from "./components/Contact";
@@ -14,14 +15,20 @@ import { TaekwondoKickScroll } from "./components/TaekwondoKickScroll";
 import { Gallery } from "./components/Gallery";
 import { ConsultaModal } from "./components/ConsultaModal";
 import { Downloads } from "./components/Downloads";
+import { useLanguage } from "./i18n/LanguageContext";
 
 export function App() {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
+  const [showVideoBanner, setShowVideoBanner] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    // Total approx 4s (3.5s animation + 0.5s fade out)
-    const timer = setTimeout(() => setLoading(false), 4000);
+    // Total approx 3s (2.5s animation + 0.5s fade out)
+    const timer = setTimeout(() => {
+      setLoading(false);
+      setShowVideoBanner(true);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -36,7 +43,15 @@ export function App() {
     <>
       <AnimatePresence>{loading && <Loader />}</AnimatePresence>
 
-      {!loading && (
+      <AnimatePresence>
+        {!loading && showVideoBanner && (
+          <VideoBanner
+            onComplete={() => setShowVideoBanner(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {!loading && !showVideoBanner && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -64,7 +79,7 @@ export function App() {
           <button
             onClick={() => setModalOpen(true)}
             className="fixed bottom-8 right-8 z-[90] bg-[#25D366] text-white p-4 rounded-full shadow-[4px_4px_0px_#FFF] hover:scale-110 active:scale-95 transition-all"
-            aria-label="Consultar por WhatsApp"
+            aria-label={t.whatsappBtn}
           >
             <svg
               stroke="currentColor"

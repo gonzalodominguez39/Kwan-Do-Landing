@@ -7,12 +7,16 @@ interface KwandoFlipCardProps {
   title?: string;
   description?: string;
   location?: string;
+  btnSeeInfo?: string;
+  btnSeeLogo?: string;
 }
 
 export default function KwandoFlipCard({
   title = "Kwan-Do",
-description = "Forjamos campeones desde adentro. Técnica, disciplina y espíritu ITF en cada entrenamiento.",
+  description = "Forjamos campeones desde adentro. Técnica, disciplina y espíritu ITF en cada entrenamiento.",
   location = "Argentina",
+  btnSeeInfo = "Ver info →",
+  btnSeeLogo = "← Ver logo",
 }: KwandoFlipCardProps) {
   const [flipped, setFlipped] = useState(false);
   const lastX = useRef<number | null>(null);
@@ -137,7 +141,7 @@ description = "Forjamos campeones desde adentro. Técnica, disciplina y espírit
         whileHover={{ scale: 1.04, backgroundColor: "rgba(245,195,29,0.08)" }}
         whileTap={{ scale: 0.97 }}
       >
-        {flipped ? "← Ver logo" : "Ver info →"}
+        {flipped ? btnSeeLogo : btnSeeInfo}
       </motion.button>
     </div>
   );

@@ -1,45 +1,59 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { FaFilePdf, FaDownload } from "react-icons/fa";
 import { IoBookOutline, IoSchoolOutline } from "react-icons/io5";
+import { useLanguage } from "../i18n/LanguageContext";
+import type { VNode } from "preact";
 
-const docs = [
-  {
-    id: "cartilla-escuelas",
-    title: "Cartilla de Escuelas KWAN-DO",
-    description:
-      "Cartilla oficial con información de todas las escuelas que conforman la organización KWAN-DO.",
-    file: "/docs/KWAN-DO ESCUELAS CARTILLA.pdf",
-    filename: "KWAN-DO ESCUELAS CARTILLA.pdf",
-    icon: <IoSchoolOutline className="text-4xl" />,
-    accent: "logo-blue",      // blue
-    accentHex: "#00AEEF",
-    badge: "Escuelas",
-  },
-  {
-    id: "teoria-tkd",
-    title: "Teoría del Taekwon-Do",
-    description:
-      "Material teórico oficial del Taekwon-Do ITF. Fundamentos, historia, filosofía y principios del arte marcial.",
-    file: "/docs/TeoriaTKD.pdf",
-    filename: "TeoriaTKD.pdf",
-    icon: <IoBookOutline className="text-4xl" />,
-    accent: "primary",        // gold
-    accentHex: "#FCD116",
-    badge: "Teoría",
-  },
-];
+interface DocItem {
+  id: string;
+  title: string;
+  description: string;
+  file: string;
+  filename: string;
+  icon: VNode;
+  accent: string;
+  accentHex: string;
+  badge: string;
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } },
 };
 
 export function Downloads() {
+  const { t } = useLanguage();
+
+  const docs: DocItem[] = [
+    {
+      id: "cartilla-escuelas",
+      title: t.downloads.doc1Title,
+      description: t.downloads.doc1Desc,
+      file: "/docs/KWAN-DO ESCUELAS CARTILLA.pdf",
+      filename: "KWAN-DO ESCUELAS CARTILLA.pdf",
+      icon: <IoSchoolOutline className="text-4xl" />,
+      accent: "logo-blue",
+      accentHex: "#00AEEF",
+      badge: t.downloads.doc1Badge,
+    },
+    {
+      id: "teoria-tkd",
+      title: t.downloads.doc2Title,
+      description: t.downloads.doc2Desc,
+      file: "/docs/TeoriaTKD.pdf",
+      filename: "TeoriaTKD.pdf",
+      icon: <IoBookOutline className="text-4xl" />,
+      accent: "primary",
+      accentHex: "#FCD116",
+      badge: t.downloads.doc2Badge,
+    },
+  ];
+
   return (
     <section
       id="downloads"
@@ -60,15 +74,14 @@ export function Downloads() {
         >
           <span className="inline-flex items-center gap-2 text-primary font-black tracking-[0.25em] uppercase text-xs mb-5">
             <FaFilePdf className="text-base" />
-            Material oficial
+            {t.downloads.label}
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase italic leading-none mb-5">
-            Descargá la<br />
-            <span className="text-primary">Teoría</span>
+            {t.downloads.title1}<br />
+            <span className="text-primary">{t.downloads.title2}</span>
           </h2>
           <p className="text-zinc-400 max-w-xl mx-auto text-base leading-relaxed">
-            Accedé de forma gratuita al material teórico oficial de KWAN-DO
-            para complementar tu entrenamiento.
+            {t.downloads.subtitle}
           </p>
         </motion.div>
 
@@ -126,7 +139,7 @@ export function Downloads() {
                   id={`download-${doc.id}`}
                 >
                   <FaDownload className="downloads-btn-icon" />
-                  Descargar PDF
+                  {t.downloads.downloadBtn}
                 </a>
               </div>
             </motion.div>
@@ -141,7 +154,7 @@ export function Downloads() {
           transition={{ delay: 0.4 }}
           className="mt-10 text-center text-xs font-bold text-zinc-600 uppercase tracking-widest"
         >
-          Material de uso libre para alumnos y escuelas KWAN-DO
+          {t.downloads.footerNote}
         </motion.p>
       </div>
     </section>

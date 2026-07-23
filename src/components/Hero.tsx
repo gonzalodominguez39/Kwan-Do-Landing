@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
-import { FaArrowRight, FaClock } from "react-icons/fa";
+import {FaClock } from "react-icons/fa";
+import { HiArrowSmDown } from "react-icons/hi";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const disciplineImg = "/assets/discipline.webp";
 const respectImg = "/assets/respect.webp";
 const improveImg = "/assets/improvement.webp";
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section id="home" className="relative min-h-[108vh] md:min-h-[116vh] mt-16 md:mt-24 overflow-hidden bg-neutral-950">
       {/* Background */}
@@ -66,7 +70,7 @@ export default function Hero() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-yellow-400/10 border border-yellow-400/40 rounded-full text-yellow-300 text-xs font-medium uppercase tracking-widest mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
-              Escuela Oficial de Taekwondo
+              {t.hero.badge}
             </span>
           </motion.div>
 
@@ -78,11 +82,11 @@ export default function Hero() {
             className="font-black uppercase leading-[0.92] tracking-wide"
             style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(40px, 8vw, 80px)" }}
           >
-            Escuela de
+            {t.hero.titleLine1}
             <br />
-            <span className="text-white">Taekwondo</span>
+            <span className="text-white">{t.hero.titleLine2}</span>
             <br />
-            <span className="text-yellow-400">Kwan-Do</span>
+            <span className="text-yellow-400">{t.hero.titleLine3}</span>
           </motion.h1>
 
           <motion.p
@@ -91,8 +95,7 @@ export default function Hero() {
             transition={{ delay: 0.4 }}
             className="mt-8 text-sm text-zinc-400 max-w-xl leading-relaxed"
           >
-            Formamos personas mediante la disciplina, el respeto y la
-            superación constante. Clases para niños, adolescentes y adultos.
+            {t.hero.subtitle}
           </motion.p>
 
           {/* Buttons */}
@@ -106,13 +109,13 @@ export default function Hero() {
               href="#downloads"
               className="flex items-center gap-3 bg-yellow-400 text-black font-bold text-sm px-8 py-3.5 rounded-xl hover:scale-105 transition tracking-wide"
             >
-              Descargá la Teoría
-              <FaArrowRight />
+              {t.hero.btnDownload}
+              <HiArrowSmDown size={25} />
             </a>
 
             <button className="flex items-center gap-2 border border-white/15 px-8 py-3.5 rounded-xl text-zinc-300 text-sm hover:border-yellow-400/50 transition">
               <FaClock className="text-yellow-400/70" />
-              Ver Horarios
+              {t.hero.btnSchedule}
             </button>
           </motion.div>
 
@@ -126,9 +129,9 @@ export default function Hero() {
             transition={{ delay: 0.8 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-y-10 sm:gap-y-0"
           >
-            <Stat icon={disciplineImg} title="Disciplina" text="Autocontrol y constancia en cada entrenamiento." />
-            <Stat icon={respectImg} title="Respeto" text="Valores y compañerismo como base del arte marcial." hasDivider />
-            <Stat icon={improveImg} title="Superación" text="Cada cinturón es un logro ganado con esfuerzo." hasDivider />
+            <Stat icon={disciplineImg} title={t.hero.stat1Title} text={t.hero.stat1Text} />
+            <Stat icon={respectImg} title={t.hero.stat2Title} text={t.hero.stat2Text} hasDivider />
+            <Stat icon={improveImg} title={t.hero.stat3Title} text={t.hero.stat3Text} hasDivider />
           </motion.div>
 
         </div>

@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { FaFistRaised, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { defaultWhatsappUrl, whatsappDisplayNumber } from "../lib/whatsapp";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const logo = "/assets/KwanDo-Logo.webp";
 
@@ -16,23 +17,6 @@ const schoolLogos = [
   { name: "Team Salvatierra",   src: "/assets/TEAM SALVATIERRA_20260224_004803_0000.png" },
   { name: "Team Yocca",         src: "/assets/TEAM YOCCA_20260224_004213_0000.png" },
   { name: "Tim Didot",          src: "/assets/TIM DIDOT_20260224_004733_0000.png" },
-];
-
-const navLinks = [
-  { label: "Inicio", href: "#home" },
-  { label: "Nosotros", href: "#about" },
-  { label: "Principios", href: "#pillars" },
-  { label: "Galería", href: "#gallery" },
-  { label: "Horarios", href: "#schedule" },
-  { label: "Contacto", href: "#contact" },
-];
-
-const usefulLinks = [
-  { label: "Preguntas frecuentes", href: "#contact" },
-  { label: "Técnica Yop Chagi", href: "#kick-animation" },
-  { label: "Beneficios del entrenamiento", href: "#training-benefits" },
-  { label: "Consultar horarios", href: "#schedule" },
-  { label: "Únete ahora", href: "#contact" },
 ];
 
 function FooterTitle({ children }: { children: string }) {
@@ -82,6 +66,8 @@ function SchoolLogosMarquee() {
 }
 
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="relative overflow-hidden bg-[#080808] text-white">
       <div className="absolute inset-0 grainy-bg opacity-40" />
@@ -93,30 +79,30 @@ export function Footer() {
           <div>
             <img className="h-40 w-40 object-contain sm:h-48 sm:w-48" src={logo} alt="KWAN-DO Taekwon-Do ITF Argentina" />
             <p className="mt-8 max-w-xs text-base font-medium leading-8 text-zinc-400">
-              Formamos personas íntegras a través del Taekwon-Do ITF, promoviendo disciplina, respeto y superación.
+              {t.footer.description}
             </p>
           </div>
 
-          <nav aria-label="Navegación del footer">
-            <FooterTitle>Navegación</FooterTitle>
+          <nav aria-label={t.footer.navTitle}>
+            <FooterTitle>{t.footer.navTitle}</FooterTitle>
             <div className="space-y-6">
-              {navLinks.map((link) => (
+              {t.footer.navLinks.map((link) => (
                 <FooterLink key={link.label} {...link} />
               ))}
             </div>
           </nav>
 
-          <nav aria-label="Enlaces útiles">
-            <FooterTitle>Enlaces útiles</FooterTitle>
+          <nav aria-label={t.footer.usefulTitle}>
+            <FooterTitle>{t.footer.usefulTitle}</FooterTitle>
             <div className="space-y-6">
-              {usefulLinks.map((link) => (
+              {t.footer.usefulLinks.map((link) => (
                 <FooterLink key={link.label} {...link} />
               ))}
             </div>
           </nav>
 
           <div>
-            <FooterTitle>Síguenos</FooterTitle>
+            <FooterTitle>{t.footer.followTitle}</FooterTitle>
             <div className="space-y-5">
               <a className="flex items-center gap-5 border-b border-white/15 pb-5 transition-colors hover:text-primary" href="https://www.instagram.com/kwandoitf/" target="_blank" rel="noopener noreferrer">
                 <span className="grid h-16 w-16 shrink-0 place-items-center rounded-full border-2 border-primary text-3xl text-white">
@@ -144,7 +130,7 @@ export function Footer() {
         {/* ── Escuelas que conforman KWAN-DO ── */}
         <div className="mt-20 border-t border-white/10 pt-14">
           <div className="mb-10 text-center">
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-500">Escuelas que conforman</p>
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-zinc-500">{t.footer.schoolsLabel}</p>
             <h3 className="mt-2 text-2xl font-black uppercase tracking-tight text-primary sm:text-3xl">KWAN-DO</h3>
           </div>
           <SchoolLogosMarquee />
@@ -154,24 +140,21 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-5 text-sm font-black uppercase tracking-wide text-zinc-100">
             <FaFistRaised className="text-4xl text-primary" />
             <span className="hidden h-12 w-px bg-white/25 sm:block" />
-            <span>Disciplina</span>
-            <span className="text-primary">•</span>
-            <span>Respeto</span>
-            <span className="text-primary">•</span>
-            <span>Integridad</span>
-            <span className="text-primary">•</span>
-            <span>Perseverancia</span>
-            <span className="text-primary">•</span>
-            <span>Autocontrol</span>
-            <span className="text-primary">•</span>
-            <span>Espíritu indomable</span>
+            {t.footer.pillars.map((pillar, i) => (
+              <>
+                <span key={pillar}>{pillar}</span>
+                {i < t.footer.pillars.length - 1 && (
+                  <span key={`dot-${i}`} className="text-primary">•</span>
+                )}
+              </>
+            ))}
           </div>
         </div>
       </div>
 
       <div className="relative bg-white/[0.06] px-6 py-6 backdrop-blur-sm sm:px-10 lg:px-16">
         <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 text-center text-xs font-black uppercase tracking-[0.16em] text-zinc-500 sm:flex-row sm:items-center sm:justify-between sm:text-left">
-          <p>© 2024 KWAN-DO Martial Arts. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} KWAN-DO Escuela de Taekwon-Do ITF Argentina. {t.footer.copyright}</p>
           <p>
             <span className="text-primary">KWAN-DO</span>
             <span className="mx-4 text-zinc-600">|</span>

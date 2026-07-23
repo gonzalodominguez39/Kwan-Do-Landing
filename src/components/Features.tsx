@@ -8,50 +8,32 @@ import {
   FaUsers, 
   FaTrophy 
 } from "react-icons/fa";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const choosingUsImg = "/assets/choosing-us.webp";
 const focusImg = "/assets/focus.webp";
 
 export default function Features() {
-  // Datos de la sección superior (¿Por qué elegir?)
+  const { t } = useLanguage();
+
   const reasons = [
-    "Clases para niños desde los 4 años",
-    "Clases para adolescentes y adultos",
-    "Instructores certificados",
-    "Preparación para competencias",
-    "Exámenes de graduación",
-    "Ambiente familiar y profesional"
+    t.features.reasons[0],
+    t.features.reasons[1],
+    t.features.reasons[2],
+    t.features.reasons[3],
+    t.features.reasons[4],
+    t.features.reasons[5],
   ];
 
-  // Datos de la sección inferior (Beneficios)
   const benefits = [
-    {
-      icon: <FaShieldAlt className="text-3xl" />,
-      title: "Defensa Personal",
-    },
-    {
-      icon: <FaHeartbeat className="text-3xl" />,
-      title: "Condición Física",
-    },
-    {
-      icon: <FaBrain className="text-3xl" />,
-      title: "Concentración y Enfoque",
-    },
-    {
-      icon: <FaUserShield className="text-3xl" />,
-      title: "Confianza y Autoestima",
-    },
-    {
-      icon: <FaUsers className="text-3xl" />,
-      title: "Compañerismo y Respeto",
-    },
-    {
-      icon: <FaTrophy className="text-3xl" />,
-      title: "Competencia Deportiva",
-    },
+    { icon: <FaShieldAlt className="text-3xl" />, title: t.features.benefit1 },
+    { icon: <FaHeartbeat className="text-3xl" />, title: t.features.benefit2 },
+    { icon: <FaBrain className="text-3xl" />, title: t.features.benefit3 },
+    { icon: <FaUserShield className="text-3xl" />, title: t.features.benefit4 },
+    { icon: <FaUsers className="text-3xl" />, title: t.features.benefit5 },
+    { icon: <FaTrophy className="text-3xl" />, title: t.features.benefit6 },
   ];
 
-  // Variantes de animación para Framer Motion
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -80,10 +62,9 @@ export default function Features() {
             transition={{ duration: 0.6 }}
             className="relative aspect-[4/3]  w-full overflow-hidden  bg-zinc-900 border border-zinc-800"
           >
-            {/* Aquí va la foto del Sabonim / Instructor con el logo de fondo */}
             <div 
               className="absolute inset-0 bg-cover bg-center grayscale contrast-125 hover:grayscale-0 transition-all duration-500"
-              style={{ backgroundImage: `url(${choosingUsImg})` }} // Reemplazar con tu ruta de imagen
+              style={{ backgroundImage: `url(${choosingUsImg})` }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent" />
           </motion.div>
@@ -91,10 +72,10 @@ export default function Features() {
           {/* Lado Derecho: ¿Por qué elegir? */}
           <div className="ml-10">
             <span className="text-yellow-400 font-black uppercase tracking-widest text-xs block mb-2 italic">
-              ¿POR QUÉ ELEGIR
+              {t.features.whyLabel}
             </span>
             <h2 className="text-4xl sm:text-5xl font-black uppercase italic tracking-tight mb-8">
-              KWAN-DO?
+              {t.features.whyTitle}
             </h2>
 
             <motion.ul 
@@ -132,13 +113,13 @@ export default function Features() {
 
           <div className="relative z-10 mx-auto w-full max-w-7xl">
             <span className="text-yellow-400 font-black uppercase tracking-widest text-xs block mb-3 italic">
-              Entrenamiento integral
+              {t.features.benefitsLabel}
             </span>
             <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-wider italic mb-4">
-              BENEFICIOS DEL TAEKWONDO
+              {t.features.benefitsTitle}
             </h3>
             <p className="mx-auto max-w-2xl text-sm sm:text-base text-zinc-100 leading-relaxed mb-10">
-              Fuerza, enfoque y confianza en una práctica que se construye clase a clase.
+              {t.features.benefitsSubtitle}
             </p>
             <div className="w-16 h-1 bg-yellow-400 mx-auto mb-12" />
 

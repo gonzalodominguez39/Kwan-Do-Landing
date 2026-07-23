@@ -10,6 +10,7 @@ import gallery07 from "../assets/kwando-galeria/IMG_0635.webp";
 import gallery08 from "../assets/kwando-galeria/IMG_4649.webp";
 import gallery09 from "../assets/kwando-galeria/IMG_7173.webp";
 import gallery10 from "../assets/kwando-galeria/IMG_9473.webp";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const galleryImages = [
   gallery01,
@@ -30,6 +31,7 @@ const itemVariants = {
 };
 
 export function Gallery() {
+  const { t } = useLanguage();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -59,14 +61,14 @@ export function Gallery() {
         <div className="mb-10 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
           <div>
             <span className="mb-3 block text-xs font-black uppercase italic tracking-widest text-yellow-400">
-              Momentos Kwan-Do
+              {t.gallery.badge}
             </span>
             <h2 className="text-4xl font-black uppercase italic leading-none tracking-wide text-white sm:text-5xl">
-              Galería
+              {t.gallery.title}
             </h2>
           </div>
           <p className="max-w-sm text-sm font-medium leading-relaxed text-zinc-400">
-            Entrenamientos, encuentros y escenas reales del camino dentro del dojang.
+            {t.gallery.subtitle}
           </p>
         </div>
 
@@ -92,7 +94,7 @@ export function Gallery() {
                   type="button"
                   className="relative block h-full w-full cursor-zoom-in overflow-hidden text-left"
                   onClick={() => setSelectedImage(image)}
-                  aria-label="Ver imagen de la galería en grande"
+                  aria-label={t.gallery.ariaZoom}
                 >
                   <img
                     src={image}
@@ -120,7 +122,7 @@ export function Gallery() {
             <motion.button
               type="button"
               className="absolute right-5 top-5 z-10 grid h-11 w-11 place-items-center rounded-full border border-white/20 bg-black/50 text-2xl leading-none text-white transition-colors hover:border-yellow-400 hover:text-yellow-400"
-              aria-label="Cerrar imagen"
+              aria-label={t.gallery.ariaClose}
               onClick={() => setSelectedImage(null)}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
