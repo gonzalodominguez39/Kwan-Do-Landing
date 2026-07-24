@@ -1,11 +1,69 @@
-import { FaBrain } from 'react-icons/fa';
-import { IoShieldOutline, IoFitnessOutline } from 'react-icons/io5';
-import { motion } from 'framer-motion';
+
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useLanguage } from '../i18n/LanguageContext';
 
+const sabonimImages = [
+  '/assets/Sabonim.webp',
+  '/assets/Sabonim1.webp',
+  '/assets/Sabonim2.webp',
+  '/assets/Sabonim3.webp',
+];
 
 export function Benefits() {
   const { t } = useLanguage();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev === 0 ? sabonimImages.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev === sabonimImages.length - 1 ? 0 : prev + 1));
+  };
+
+  const handleSelect = (idx: number) => {
+    setDirection(idx > currentIndex ? 1 : -1);
+    setCurrentIndex(idx);
+  };
+
+  // Variantes para la transición suntuosa/profesional estilo portada editorial
+  const slideVariants = {
+    initial: (dir: number) => ({
+      opacity: 0,
+      x: dir * 40,
+      scale: 1.05,
+      filter: "blur(4px)",
+    }),
+    animate: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: {
+        x: { type: "spring" as const, stiffness: 260, damping: 28 },
+        opacity: { duration: 0.45, ease: "easeOut" as const },
+        scale: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+        filter: { duration: 0.4 },
+      },
+    },
+    exit: (dir: number) => ({
+      opacity: 0,
+      x: dir * -40,
+      scale: 0.96,
+      filter: "blur(4px)",
+      transition: {
+        x: { duration: 0.35, ease: "easeIn" as const },
+        opacity: { duration: 0.3, ease: "easeIn" as const },
+        scale: { duration: 0.35 },
+        filter: { duration: 0.3 },
+      },
+    }),
+  };
 
   return (
     <section
@@ -19,7 +77,7 @@ export function Benefits() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* Foto del Sabonim */}
+          {/* Foto del Sabonim y Galería */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -27,24 +85,84 @@ export function Benefits() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 relative"
           >
-            <div className="relative rounded-2xl overflow-hidden border-2 border-yellow-400/40 shadow-[0_0_50px_rgba(252,209,22,0.15)] bg-neutral-900 group">
-              <img
-                src="/assets/Sabonim.webp"
-                alt="Sabonim Esteban Gabriel Contardi - VI Dan Taekwondo ITF"
-                className="w-full h-auto object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent" />
+            {/* Contenedor principal de la foto */}
+            <div className="relative rounded-2xl overflow-hidden border-2 border-yellow-400/40 shadow-[0_0_50px_rgba(252,209,22,0.15)] bg-neutral-900 group h-[450px] sm:h-[500px]">
+              <AnimatePresence mode="popLayout" custom={direction}>
+                <motion.img
+                  key={sabonimImages[currentIndex]}
+                  src={sabonimImages[currentIndex]}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  alt="Sabonim Esteban Gabriel Contardi - VI Dan Taekwondo ITF"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.15}
+                  onDragEnd={(_, info) => {
+                    if (info.offset.x < -40) {
+                      handleNext();
+                    } else if (info.offset.x > 40) {
+                      handlePrev();
+                    }
+                  }}
+                  className="w-full h-full object-cover select-none cursor-grab active:cursor-grabbing"
+                />
+              </AnimatePresence>
+              
+              {/* Overlay de gradiente */}
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent pointer-events-none" />
+
+              {/* Botón Anterior */}
+              <button
+                onClick={handlePrev}
+                aria-label="Foto anterior"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all duration-300 z-10 shadow-lg"
+              >
+                <FaChevronLeft className="text-sm" />
+              </button>
+
+              {/* Botón Siguiente */}
+              <button
+                onClick={handleNext}
+                aria-label="Siguiente foto"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-yellow-400 hover:text-black hover:border-yellow-400 transition-all duration-300 z-10 shadow-lg"
+              >
+                <FaChevronRight className="text-sm" />
+              </button>
               
               {/* Badge de Grado sobre la imagen */}
-              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between bg-black/85 backdrop-blur-md border border-white/10 p-4 rounded-xl">
+              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between bg-black/85 backdrop-blur-md border border-white/10 p-4 rounded-xl pointer-events-none z-10">
                 <div>
-                  <p className="text-yellow-400 font-black uppercase text-xs tracking-widest">Bicampeón Mundial</p>
-                  <p className="text-white font-bold text-sm tracking-wide">VI Dan Internacional</p>
+                  <p className="text-yellow-400 font-black uppercase text-xs tracking-widest">{t.sabonim.badgeWorldChamp}</p>
+                  <p className="text-white font-bold text-sm tracking-wide">{t.sabonim.badgeRank}</p>
                 </div>
                 <span className="text-2xl font-black text-yellow-400" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                   ITF
                 </span>
               </div>
+            </div>
+
+            {/* Miniaturas de fotos */}
+            <div className="grid grid-cols-4 gap-3 mt-4">
+              {sabonimImages.map((imgSrc, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSelect(idx)}
+                  className={`relative rounded-xl overflow-hidden border-2 transition-all duration-300 h-20 bg-neutral-900 ${
+                    currentIndex === idx
+                      ? 'border-yellow-400 scale-105 shadow-[0_0_15px_rgba(252,209,22,0.4)]'
+                      : 'border-white/10 opacity-60 hover:opacity-100 hover:border-white/30'
+                  }`}
+                >
+                  <img
+                    src={imgSrc}
+                    alt={`Sabonim foto ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
             </div>
           </motion.div>
 
@@ -58,43 +176,43 @@ export function Benefits() {
           >
             <span className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/30 rounded-full px-4 py-1.5 text-[10px] font-semibold text-yellow-400 uppercase tracking-[0.2em] mb-4 w-fit">
               <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
-              Dirección Técnica
+              {t.sabonim.technicalDirection}
             </span>
 
             <h2
               className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase italic leading-[0.95] tracking-wide text-white mb-6"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              Sabonim Esteban <br />
-              <span className="text-yellow-400">Gabriel Contardi</span>
+              {t.sabonim.titleFirstName} <br />
+              <span className="text-yellow-400">{t.sabonim.titleLastName}</span>
             </h2>
 
             <p className="text-yellow-400/90 font-bold uppercase tracking-widest text-xs sm:text-sm mb-6">
-              Presidente e Instructor de Kwan-Do · VI Dan Taekwondo ITF
+              {t.sabonim.subtitle}
             </p>
 
             <div className="space-y-4 text-zinc-300 text-sm sm:text-base leading-relaxed mb-8">
               <p className="border-l-2 border-yellow-400 pl-4">
-                Referente de la organización Kwan-Do. Dedicado a la formación marcial integral y a la preservación de los principios éticos del Taekwondo ITF.
+                {t.sabonim.bio1}
               </p>
               <p className="border-l-2 border-white/20 pl-4 text-zinc-400">
-                Con décadas de trayectoria en la enseñanza, preparación competitiva y transmisión de valores, impulsa el crecimiento continuo de instructores y alumnos en cada una de las escuelas de la asociación.
+                {t.sabonim.bio2}
               </p>
             </div>
 
             {/* Ficha técnica de credenciales */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-white/10 pt-6">
               <div className="bg-neutral-900/60 border border-white/5 p-4 rounded-xl">
-                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Cargo</p>
-                <p className="text-xs sm:text-sm font-black text-white uppercase italic mt-1">Presidente Kwan-Do</p>
+                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">{t.sabonim.labelPosition}</p>
+                <p className="text-xs sm:text-sm font-black text-white uppercase italic mt-1">{t.sabonim.valPosition}</p>
               </div>
               <div className="bg-neutral-900/60 border border-white/5 p-4 rounded-xl">
-                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Categoría</p>
-                <p className="text-xs sm:text-sm font-black text-yellow-400 uppercase italic mt-1">VI Dan ITF</p>
+                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">{t.sabonim.labelCategory}</p>
+                <p className="text-xs sm:text-sm font-black text-yellow-400 uppercase italic mt-1">{t.sabonim.valCategory}</p>
               </div>
               <div className="col-span-2 sm:col-span-1 bg-neutral-900/60 border border-white/5 p-4 rounded-xl">
-                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">Disciplina</p>
-                <p className="text-xs sm:text-sm font-black text-white uppercase italic mt-1">Taekwon-Do ITF</p>
+                <p className="text-[10px] uppercase font-bold text-zinc-500 tracking-wider">{t.sabonim.labelDiscipline}</p>
+                <p className="text-xs sm:text-sm font-black text-white uppercase italic mt-1">{t.sabonim.valDiscipline}</p>
               </div>
             </div>
           </motion.div>

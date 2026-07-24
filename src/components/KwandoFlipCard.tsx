@@ -92,34 +92,25 @@ export default function KwandoFlipCard({
 
           {/* REVERSO */}
           <div
+            className="flex flex-col items-center justify-center text-center p-4 sm:p-8 md:p-10 gap-2 sm:gap-3.5 box-border rounded-full border-4 sm:border-[5px] border-[#F5C31D] bg-[#0d0d0d]"
             style={{
               backfaceVisibility: "hidden",
               WebkitBackfaceVisibility: "hidden",
               transform: "rotateY(180deg)",
               position: "absolute",
               inset: 0,
-              borderRadius: "9999px",
-              background: "#0d0d0d",
-              border: "5px solid #F5C31D",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "14px",
-              padding: "40px",
-              boxSizing: "border-box",
             }}
           >
-            <span style={{ color: "#F5C31D", opacity: 0.7, fontSize: "12px", letterSpacing: "3px", textTransform: "uppercase" }}>
+            <span className="text-[#F5C31D] opacity-75 text-[10px] sm:text-xs tracking-[2px] sm:tracking-[3px] uppercase font-bold">
               Taekwon-Do ITF
             </span>
-            <h2 style={{ color: "#F5C31D", fontSize: "28px", fontWeight: 700, letterSpacing: "4px", textTransform: "uppercase", textAlign: "center", margin: 0 }}>
+            <h2 className="text-[#F5C31D] text-xl sm:text-2xl md:text-3xl font-extrabold tracking-[2px] sm:tracking-[4px] uppercase m-0 leading-tight">
               {title}
             </h2>
-            <p style={{ color: "#d1d5db", fontSize: "14px", textAlign: "center", lineHeight: 1.7, margin: 0 }}>
+            <p className="text-zinc-300 text-xs sm:text-sm leading-snug sm:leading-relaxed m-0 max-w-[92%] sm:max-w-full">
               {description}
             </p>
-            <span style={{ color: "#F5C31D", opacity: 0.6, fontSize: "11px", letterSpacing: "3px", textTransform: "uppercase", marginTop: "4px" }}>
+            <span className="text-[#F5C31D] opacity-60 text-[9px] sm:text-[11px] tracking-[2px] sm:tracking-[3px] uppercase mt-0.5">
               {location}
             </span>
           </div>

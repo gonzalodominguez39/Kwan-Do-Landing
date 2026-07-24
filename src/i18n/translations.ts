@@ -4,7 +4,6 @@ export const translations = {
   es: {
     // ── NavBar ──
     nav: {
-      home: "Inicio",
       pillars: "Principios",
       gallery: "Galería",
       schedule: "Horarios",
@@ -165,6 +164,24 @@ export const translations = {
       card2Text: "Supera tus límites y desarrolla una mentalidad de ganador inquebrantable.",
       card3Title: "Estado Físico",
       card3Text: "Mejora fuerza, flexibilidad y resistencia cardiovascular de alto nivel.",
+    },
+
+    // ── Sabonim (Sections) ──
+    sabonim: {
+      badgeWorldChamp: "Bicampeón Mundial",
+      badgeRank: "VI Dan Internacional",
+      technicalDirection: "Dirección Técnica",
+      titleFirstName: "Sabonim Esteban",
+      titleLastName: "Gabriel Contardi",
+      subtitle: "Presidente e Instructor de Kwan-Do · VI Dan Taekwondo ITF",
+      bio1: "Referente de la organización Kwan-Do. Dedicado a la formación marcial integral y a la preservación de los principios éticos del Taekwondo ITF.",
+      bio2: "Con décadas de trayectoria en la enseñanza, preparación competitiva y transmisión de valores, impulsa el crecimiento continuo de instructores y alumnos en cada una de las escuelas de la asociación.",
+      labelPosition: "Cargo",
+      valPosition: "Presidente Kwan-Do",
+      labelCategory: "Categoría",
+      valCategory: "VI Dan ITF",
+      labelDiscipline: "Disciplina",
+      valDiscipline: "Taekwon-Do ITF",
     },
 
     // ── Schedule (Sections) ──
@@ -401,6 +418,23 @@ export const translations = {
       card3Text: "Improve strength, flexibility and high-level cardiovascular endurance.",
     },
 
+    sabonim: {
+      badgeWorldChamp: "Two-time World Champion",
+      badgeRank: "VI International Dan",
+      technicalDirection: "Technical Direction",
+      titleFirstName: "Sabonim Esteban",
+      titleLastName: "Gabriel Contardi",
+      subtitle: "President & Kwan-Do Instructor · VI Dan Taekwondo ITF",
+      bio1: "Leading figure of the Kwan-Do organization. Dedicated to comprehensive martial arts training and preserving the ethical principles of ITF Taekwondo.",
+      bio2: "With decades of experience in teaching, competitive preparation, and value transmission, he drives continuous growth for instructors and students across all association schools.",
+      labelPosition: "Position",
+      valPosition: "Kwan-Do President",
+      labelCategory: "Category",
+      valCategory: "VI Dan ITF",
+      labelDiscipline: "Discipline",
+      valDiscipline: "Taekwon-Do ITF",
+    },
+
     schedule: {
       label: "ORGANIZE YOUR TIME",
       title: "Weekly Schedule",
@@ -628,6 +662,23 @@ export const translations = {
       card2Text: "Supere seus limites e desenvolva uma mentalidade vencedora inabalável.",
       card3Title: "Condicionamento Físico",
       card3Text: "Melhore força, flexibilidade e resistência cardiovascular de alto nível.",
+    },
+
+    sabonim: {
+      badgeWorldChamp: "Bicampeão Mundial",
+      badgeRank: "VI Dan Internacional",
+      technicalDirection: "Direção Técnica",
+      titleFirstName: "Sabonim Esteban",
+      titleLastName: "Gabriel Contardi",
+      subtitle: "Presidente e Instrutor do Kwan-Do · VI Dan Taekwondo ITF",
+      bio1: "Referência da organização Kwan-Do. Dedicado à formação marcial integral e à preservação dos princípios éticos do Taekwondo ITF.",
+      bio2: "Com décadas de trajetória no ensino, preparação competitiva e transmissão de valores, impulsiona o crescimento contínuo de instrutores e alunos em cada uma das escolas da associação.",
+      labelPosition: "Cargo",
+      valPosition: "Presidente Kwan-Do",
+      labelCategory: "Categoria",
+      valCategory: "VI Dan ITF",
+      labelDiscipline: "Disciplina",
+      valDiscipline: "Taekwon-Do ITF",
     },
 
     schedule: {

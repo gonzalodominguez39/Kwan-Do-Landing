@@ -15,7 +15,6 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { id: "home", name: t.nav.home },
     { id: "pillars", name: t.nav.pillars },
     { id: "gallery", name: t.nav.gallery },
     { id: "schedule", name: t.nav.schedule },
@@ -56,7 +55,12 @@ export function Navbar() {
     <header className="fixed top-0 w-full z-50 bg-neutral-950/90 backdrop-blur-xl border-b border-white/5">
       <nav className="flex justify-between items-center px-6 md:px-8 py-4 md:py-5 max-w-7xl mx-auto uppercase tracking-tighter">
         {/* LOGO */}
-        <div className="flex items-center gap-3 group cursor-pointer">
+        <a
+          href="#home"
+          onClick={() => setActiveItem("home")}
+          className="flex items-center gap-3 group cursor-pointer"
+          aria-label="Ir al inicio"
+        >
           <img
             src={logo}
             alt="Logo"
@@ -65,7 +69,7 @@ export function Navbar() {
           <div className="text-lg md:text-3xl font-black text-yellow-400 italic hidden sm:block">
             KWAN-DO
           </div>
-        </div>
+        </a>
 
         {/* LINKS (Desktop) */}
         <div className="hidden md:flex items-center gap-6 lg:gap-9 font-bold">

@@ -2,7 +2,7 @@ import { motion, type Variants } from "framer-motion";
 import { FaFilePdf, FaDownload } from "react-icons/fa";
 import { IoBookOutline, IoSchoolOutline } from "react-icons/io5";
 import { useLanguage } from "../i18n/LanguageContext";
-import type { VNode } from "preact";
+import type { ReactNode } from "react";
 
 interface DocItem {
   id: string;
@@ -10,7 +10,7 @@ interface DocItem {
   description: string;
   file: string;
   filename: string;
-  icon: VNode;
+  icon: ReactNode;
   accent: string;
   accentHex: string;
   badge: string;
@@ -106,7 +106,7 @@ export function Downloads() {
               key={doc.id}
               variants={cardVariants}
               className="downloads-card group"
-              style={{ "--accent": doc.accentHex } as React.CSSProperties}
+              style={{ "--accent": doc.accentHex } as any}
             >
               {/* Top accent bar */}
               <div

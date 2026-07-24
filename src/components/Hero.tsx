@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import {FaClock } from "react-icons/fa";
 import { HiArrowSmDown } from "react-icons/hi";
 import { useLanguage } from "../i18n/LanguageContext";
+import { GiStarFormation } from "react-icons/gi";
 
 const disciplineImg = "/assets/discipline.webp";
 const respectImg = "/assets/respect.webp";
@@ -69,7 +70,7 @@ export default function Hero() {
             transition={{ duration: 0.7 }}
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-yellow-400/10 border border-yellow-400/40 rounded-full text-yellow-300 text-xs font-medium uppercase tracking-widest mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+              <GiStarFormation size={16} />
               {t.hero.badge}
             </span>
           </motion.div>
